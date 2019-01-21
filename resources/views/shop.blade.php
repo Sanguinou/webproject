@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +12,9 @@
     <script src="main.js"></script>
 </head>
 <body>
-    rebijour oetite merde
+    <?php
+        $_SESSION['username'] = "pascal";
+        echo $_SESSION['username'];
+    ?>
 </body>
 </html>
