@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration
+class CreatePictureEventTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('body');
-            $table->integer('h_start');
-            $table->integer('h_end');
+        Schema::create('picture_event', function (Blueprint $table) {
+            $table->increments('id_picture_event');
+            $table->char('picture_event_name', 32);
+            $table->unsignedInteger('id_user');
+            $table->unsignedInteger('id_event');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('picture_event');
     }
 }
