@@ -19,7 +19,8 @@ class AddFKConstraints extends Migration
         });
 
         Schema::table('event', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id_user')->on('user');
+            $table->foreign('id_user_create')->references('id_user')->on('user');
+            $table->foreign('id_user_validate')->references('id_user')->on('user');
             $table->foreign('id_status_event')->references('id_status_event')->on('status_event');
         });
 
@@ -54,11 +55,16 @@ class AddFKConstraints extends Migration
 
         Schema::table('product', function (Blueprint $table) {
             $table->foreign('id_category')->references('id_category')->on('category');
+            $table->foreign('id_stock')->references('id_stock')->on('stock');
         });
 
         Schema::table('vote', function (Blueprint $table) {
             $table->foreign('id_event')->references('id_event')->on('event');
             $table->foreign('id_user')->references('id_user')->on('user');
+        });
+
+        Schema::table('stock', function (Blueprint $table) {
+            $table->foreign('id_product')->references('id_product')->on('product');
         });
     }
 

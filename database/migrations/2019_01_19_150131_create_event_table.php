@@ -19,8 +19,9 @@ class CreateEventTable extends Migration
             $table->char('event_body', 255);
             $table->char('event_date', 8);
             $table->char('event_location', 64);
-            $table->unsignedInteger('id_user');
+            $table->unsignedInteger('id_user_create');
             $table->unsignedInteger('id_status_event');
+            $table->unsignedInteger('id_user_validate');
             $table->timestamps();
         });
     }
