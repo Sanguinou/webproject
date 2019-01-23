@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +11,23 @@ session_start();
 </head>
 <body>
     <?php
-        $_SESSION['username'] = "pascal";
-        echo $_SESSION['username'];
+    $url = "https://reqres.in/api/users";
+    if (isset($url)){
+        $myClient = new GuzzleHttp\Client([
+            'headers'=> ['User-Agent' => 'MyReader']
+        ]);
+
+        $resp = $myClient -> request('GET',$url,['verify'=>false]);
+        if ($resp -> getStatusCode() == 200){
+            $body = $resp -> getBody();
+            $obj = json_decode($body);
+            foreach($obj -> data as $data){
+                echo $data -> first_name;
+            };
+        }
+    }
     ?>
+
+
 </body>
 </html>

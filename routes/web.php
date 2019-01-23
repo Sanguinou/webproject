@@ -22,3 +22,7 @@ Route::get('event', function () {
 Route::get('shop', function () {
     return view('shop');
 });
+
+Route::get('login', function () {
+    return view('login');
+});
