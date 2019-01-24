@@ -11,7 +11,7 @@
 </head>
 <body>
     <?php
-    $url = "https://reqres.in/api/users";
+    $url = "http://localhost:3000/users";
     if (isset($url)){
         $myClient = new GuzzleHttp\Client([
             'headers'=> ['User-Agent' => 'MyReader']
@@ -21,11 +21,12 @@
         if ($resp -> getStatusCode() == 200){
             $body = $resp -> getBody();
             $obj = json_decode($body);
-            foreach($obj -> data as $data){
-                echo $data -> first_name;
+                foreach( $obj as $obj ){
+                    echo "<p>".$obj->Lastname."</p>";
+                };
             };
-        }
-    }
+        };
+
     ?>
 
 
