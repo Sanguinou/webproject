@@ -9,6 +9,22 @@
     <script src="main.js"></script>
 </head>
 <body>
-    Bijour
-</body>
+<?php
+    $url = "http://localhost:3000/events";
+    if (isset($url)){
+        $myClient = new GuzzleHttp\Client([
+            'headers'=> ['User-Agent' => 'MyReader']
+        ]);
+
+        $resp = $myClient -> request('GET',$url,['verify'=>false]);
+        if ($resp -> getStatusCode() == 200){
+            $body = $resp -> getBody();
+            $obj = json_decode($body);
+                foreach( $obj as $obj ){
+                    echo "<img src='$obj->ImageEvent' alt='Italian Trulli'>";
+                };
+            };
+        };
+
+    ?></body>
 </html>
