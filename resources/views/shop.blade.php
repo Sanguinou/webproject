@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,19 +13,19 @@
 </head>
 <body>
     <?php
-    $url = "http://localhost:3000/users";
+    $url = "http://localhost:3000/login";
     if (isset($url)){
         $myClient = new GuzzleHttp\Client([
-            'headers'=> ['User-Agent' => 'MyReader']
+            'headers'=> ['User-Agent' => 'MyReader','Authorization' => 'bearer '.$_SESSION['token']]
         ]);
 
-        $resp = $myClient -> request('GET',$url,['verify'=>false]);
+        $resp = $myClient -> request('GET',$url);
         if ($resp -> getStatusCode() == 200){
             $body = $resp -> getBody();
-            $obj = json_decode($body);
-                foreach( $obj as $obj ){
-                    echo "<p>".$obj->Lastname."</p>";
-                };
+         //   $obj = json_decode($body);
+           //     foreach( $obj as $obj ){
+                    echo "<p>".$body."</p>";
+                //};
             };
         };
 

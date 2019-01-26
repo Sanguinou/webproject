@@ -1,4 +1,8 @@
+<?php
+session_start();
 
+use \Firebase\JWT\JWT;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,27 +13,25 @@
 </head>
 <body>
     <?php
-    $url = "http://localhost:3000/users";
+    $url = "http://localhost:3000/login";
     if (isset($url)){
         $myClient = new GuzzleHttp\Client([
-            'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/x-www-form-urlencoded']
+            'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']
         ]);
+    
 
-        $myBody['Lastname'] = 'ARCELIN';
-        $myBody['Firstname'] = 'Félix';
-        $myBody['Password'] = 'puceau';
+        $resp = $myClient -> request('POST',$url,[
+            'form_params'=> [
+                'password' => 'tryhard',
+                'email' => 'test@test.com'
+            ]
+            ]);
 
-
-
-        $resp = $myClient -> post($url,['verify'=>false],['body'=>[
-            'Lastname' => 'ARCELIN',
-            'Firstname' => 'Félix',
-            'Password' => 'puceau'
-            ]]);
-        if ($resp -> getStatusCode() == 201){
-            $body = $resp -> getBody();
-            print_r(json_decode((string)$body));
-          
+        if ($resp -> getStatusCode() == 200){
+            $obj = json_decode($resp->getBody());
+            $_SESSION['token'] = $obj->token;
+            $_SESSION['decoded'] = JWT::decode($_SESSION['token'],'secret',array('HS256'));
+            print_r($_SESSION['decoded']);
             };
         }
     ?>
