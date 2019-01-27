@@ -14,20 +14,25 @@ session_start();
 <body>
     <?php
     $url = "http://localhost:3000/login";
-    if (isset($url)){
+    if (isset($url) && isset($_SESSION['token'])){
         $myClient = new GuzzleHttp\Client([
             'headers'=> ['User-Agent' => 'MyReader','Authorization' => 'bearer '.$_SESSION['token']]
         ]);
 
-        $resp = $myClient -> request('GET',$url);
+        $resp = $myClient -> request('GET',$url,['http_errors' => false]);
         if ($resp -> getStatusCode() == 200){
             $body = $resp -> getBody();
          //   $obj = json_decode($body);
            //     foreach( $obj as $obj ){
                     echo "<p>".$body."</p>";
                 //};
-            };
+        }
+        else if($resp -> getStatusCode()== 403){
+            echo "<p> that is the wrong token bro </p>";
         };
+    } else {
+            echo "<p> the token is not loaded </p>";
+            };
 
     ?>
 

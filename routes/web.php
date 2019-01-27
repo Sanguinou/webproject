@@ -27,6 +27,10 @@ Route::get('login', function () {
     return view('login');
 });
 
+Route::post('login', function () {
+    return view('login');
+});
+
 Route::get('post', function () {
     return view('post');
 });
