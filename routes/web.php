@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    $products = DB::table('product')->get();
     return view('welcome');
 });
 
@@ -20,6 +21,10 @@ Route::get('event', function () {
 });
 Route::get('event/{id}', function ($id) {
     return view('event',$idevent = ["id_event"=>$id]);
+});
+
+Route::get('event/event1', function () {
+    return view('eventpics');
 });
 
 Route::get('shop', function () {

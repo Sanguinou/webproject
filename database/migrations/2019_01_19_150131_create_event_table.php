@@ -17,11 +17,12 @@ class CreateEventTable extends Migration
             $table->increments('id_event');
             $table->char('event_name', 64);
             $table->char('event_body', 255);
-            $table->char('event_date', 8);
+            $table->char('event_date', 10);
             $table->char('event_location', 64);
+            $table->char('picture_presentation_event', 32);
             $table->unsignedInteger('id_user_create');
             $table->unsignedInteger('id_status_event');
-            $table->unsignedInteger('id_user_validate');
+            $table->unsignedInteger('id_user_validate')->nullable();
             $table->timestamps();
         });
     }
