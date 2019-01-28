@@ -1,4 +1,11 @@
-<<<<<<< HEAD
+<?php
+session_start();
+$MaxEventsShown = 1;
+if(isset($_SESSION['timeout'])){
+    if ($_SESSION['timeout'] + 5 * 60 < time()) {
+        session_unset(); 
+    };
+};?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +17,11 @@
 <body>
     <div class="welcomeGrid">
         <!-- a changer en php -->
+        <?php
+        if(isset($_SESSION['username'])){
+                    echo $_SESSION['username'];
+            };
+        ?>
         <div>
             <div class="blurBackground" style="background-image: url({{ asset('image/bgevent.jpg') }})"></div>
             <div class="welcomeEventGrid">
@@ -23,85 +35,8 @@
                         reiciendis nam temporibus quod quasi quidem assumenda esse officiis sed quibusdam voluptates 
                         soluta laudantium deserunt expedita ratione laboriosam tempore consequuntur?
                     </p>
-=======
-<?php
-session_start();
-$MaxEventsShown = 1;
-if(isset($_SESSION['timeout'])){
-    if ($_SESSION['timeout'] + 5 * 60 < time()) {
-        session_unset(); 
-    };
-};
-?>
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-
-<<<<<<< HEAD
         <?php     
         $url_product="http://localhost:3000/products/top";
         $url_event = "http://localhost:3000/events";
@@ -151,14 +86,11 @@ if(isset($_SESSION['timeout'])){
                         };
                 };
             };
-            if(isset($_SESSION['username'])){
-                    echo $_SESSION['username'];
-            };?>
+            ?>
 
-=======
+
             <div class="content">
                 <div class="title m-b-md">
->>>>>>> 7442dfc910de8c0674ac47a7a81b021c9ee0e89f
                 </div>
             </div>
         </div>
@@ -231,4 +163,3 @@ if(isset($_SESSION['timeout'])){
     </div>
 </body>
 </html>
->>>>>>> master
