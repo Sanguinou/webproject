@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +11,7 @@
     <script src="{{ asset('js/script.js') }}"></script>
 </head>
 <body>
+<<<<<<< HEAD
     <h1 class="title">Boutique</h1> 
     <div class="topMerchGrid">
         <div>
@@ -29,5 +33,11 @@
             </p>
         </div>
     </div>
+=======
+    <?php
+        $_SESSION['username'] = "pascal";
+        echo $_SESSION['username'];
+    ?>
+>>>>>>> 7442dfc910de8c0674ac47a7a81b021c9ee0e89f
 </body>
 </html>
