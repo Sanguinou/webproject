@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+<meta charset="utf-8" />
+    <title>BDE Cesi - Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{  asset('css/style.css') }}"/>
+    <script src="{{ asset('js/script.js') }}"></script>
 </head>
 <body>
-    rebijour oetite merde
+    <h1 class="title">Boutique</h1> 
+    <div class="topMerchGrid">
+        <div>
+            <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="500">
+            <p class="nameProduct" width="300" height="100">
+                Black tuxedo / cool wear - <b>1.000 €</b>
+            </p>
+        </div>
+        <div>
+            <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gaelz.jpg') }}" width="300" height="500">
+            <p class="nameProduct" width="300" height="100">
+                Young and Dynamic vest - <b>10 €</b>
+            </p>
+        </div>
+        <div>
+            <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/shaq.jpg') }}" width="300" height="500">
+            <p class="nameProduct" width="300" height="100">
+                Shaq'fu pro vest / 100% Sprite cramberry - <b>69.420 €</b>
+            </p>
+        </div>
+    </div>
 </body>
 </html>

@@ -12,11 +12,16 @@
 */
 
 Route::get('/', function () {
+    $products = DB::table('product')->get();
     return view('welcome');
 });
 
 Route::get('event', function () {
     return view('event');
+});
+
+Route::get('event/event1', function () {
+    return view('eventpics');
 });
 
 Route::get('shop', function () {

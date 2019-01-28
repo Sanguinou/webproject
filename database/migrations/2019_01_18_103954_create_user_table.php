@@ -17,8 +17,10 @@ class CreateUserTable extends Migration
             $table->increments('id_user');
             $table->char('first_name', 32);
             $table->char('last_name', 32);
-            $table->char('email', 64);
+            $table->char('email', 64)->unique();
             $table->char('password',64);
+            $table->char('profile_pic', 32);
+            $table->char('token', 10)->unique();
             $table->unsignedInteger('id_status_user');
             $table->unsignedInteger('id_school');
             $table->timestamps();
