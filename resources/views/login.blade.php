@@ -4,6 +4,7 @@ use GuzzleHttp\Psr7;
 use \Firebase\JWT\JWT;
 use GuzzleHttp\Exception\ClientException;
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +23,8 @@ $(document).ready(function(){
     $("#form").toggle();
   });
 });
-
 </script>
+
     <?php
      $url = "http://localhost:3000/login";
      if (isset($url) && isset($_POST['password'])){
@@ -46,8 +47,8 @@ $(document).ready(function(){
              $obj = json_decode($resp->getBody());
              $_SESSION['token'] = $obj->token;
              $_SESSION['decoded'] = JWT::decode($_SESSION['token'],'secret',array('HS256'));
-            // print_r($_SESSION['decoded']);
              $_SESSION['username'] = $_SESSION['decoded']->last_name;
+             $_SESSION['timeout'] = time();
              header("Location:http://localhost:8000/");
              exit();
             }

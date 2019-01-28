@@ -18,6 +18,9 @@ Route::get('/', function () {
 Route::get('event', function () {
     return view('event');
 });
+Route::get('event/{id}', function ($id) {
+    return view('event',$idevent = ["id_event"=>$id]);
+});
 
 Route::get('shop', function () {
     return view('shop');

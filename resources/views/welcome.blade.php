@@ -1,5 +1,11 @@
 <?php
 session_start();
+$MaxEventsShown = 1;
+if(isset($_SESSION['timeout'])){
+    if ($_SESSION['timeout'] + 5 * 60 < time()) {
+        session_unset(); 
+    };
+};
 ?>
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
@@ -68,23 +74,59 @@ session_start();
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    <?php echo $_SESSION['username'];?>
-                </div>
+        <?php     
+        $url_product="http://localhost:3000/products/top";
+        $url_event = "http://localhost:3000/events";
+            if (isset($url_event)){
+                $myClient = new GuzzleHttp\Client([
+                'headers'=> ['User-Agent' => 'MyReader']
+            ]);
 
+            $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 1]], ['verify'=>false]);
+
+                if ($resp -> getStatusCode() == 200){
+                    $body = $resp -> getBody();
+                    $obj = json_decode($body);
+                    for($i=0;$i<$MaxEventsShown;$i++){ 
+                        echo "<p> events: ".$obj[$i]->event_name."</p>";
+                    };
+                };
+            };
+
+            if (isset($url_event)){
+                $myClient = new GuzzleHttp\Client([
+                'headers'=> ['User-Agent' => 'MyReader']
+            ]);
+
+            $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 2]], ['verify'=>false]);
+
+                if ($resp -> getStatusCode() == 200){
+                    $body = $resp -> getBody();
+                    $obj = json_decode($body);
+                    for($i=0;$i<$MaxEventsShown;$i++){ 
+                        echo "<p> ideas: ".$obj[$i]->event_name."</p>";
+                    };
+                };
+            };
+
+            if (isset($url_product)){
+                $myClient = new GuzzleHttp\Client([
+                'headers'=> ['User-Agent' => 'MyReader']
+            ]);
+
+            $resp = $myClient -> request('GET',$url_product,['verify'=>false]);
+                if ($resp -> getStatusCode() == 200){
+                    $body = $resp -> getBody();
+                    $obj = json_decode($body);
+                        for($i=0;$i<$MaxEventsShown;$i++){ 
+                            echo "<p>".$obj[$i]->Product_name."</p>";
+                        };
+                };
+            };
+            if(isset($_SESSION['username'])){
+                    echo $_SESSION['username'];
+            };?>
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -92,7 +134,5 @@ session_start();
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
-            </div>
-        </div>
     </body>
 </html>
