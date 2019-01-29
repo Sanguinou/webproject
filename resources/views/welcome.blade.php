@@ -32,6 +32,7 @@ $url_event = "http://localhost:3000/api/events";
 
     if (isset($url_event)){
         $myClient = new GuzzleHttp\Client([
+        'headers'=> ['User-Agent' => 'MyReader']
     ]);
 
     $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 2]], ['verify'=>false]);
