@@ -3,8 +3,6 @@ session_start();
 $MaxEventsShown = 1;
 
 
-
-
 if(isset($_SESSION['timeout'])){
     if ($_SESSION['timeout'] + 5 * 60 < time()) {
         session_unset(); 
@@ -25,9 +23,6 @@ $url_event = "http://localhost:3000/api/events";
             $GLOBALS['events'] = json_decode($body);
 
         };
-        for($i=0;$i<$MaxEventsShown;$i++){ 
-            echo "<p> events: ".$GLOBALS['events'][$i]->event_name."</p>";
-        };
     };
 
     if (isset($url_event)){
@@ -41,7 +36,6 @@ $url_event = "http://localhost:3000/api/events";
             $body = $resp -> getBody();
             $GLOBALS['ideas'] = json_decode($body);
             for($i=0;$i<0;$i++){ 
-                echo "<p> ideas: ".$GLOBALS['ideas'][$i]->event_name."</p>";
             };
         };
     };
@@ -58,8 +52,6 @@ $url_event = "http://localhost:3000/api/events";
 
         };
     };
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -72,23 +64,23 @@ $url_event = "http://localhost:3000/api/events";
 <body>
     <div class="welcomeGrid">
         <!-- a changer en php -->
-        <?php
-        if(isset($_SESSION['username'])){
-                    echo $_SESSION['username'];
-            };
-        ?>
+
         <div>
             <div class="blurBackground" style="background-image: url({{ asset('image/bgevent.jpg') }})"></div>
             <div class="welcomeEventGrid">
                 <div>
                     <img class="imgBorder imgPos center" src="{{ asset('image/bgevent.jpg') }}" width="600" height="300">
                     <p class="titleEvent tEventPos center"><?php echo $GLOBALS['events'][0]->event_name." - ".$GLOBALS['events'][0]->event_date?> </p>
-                    <button class="buttonStyle1 buttonEventPos">S'inscrire maintenant ></button>
+
+                    <form id='form' action=<?php 
+                    if(isset($GLOBALS['events'])){
+                         echo "event/".$GLOBALS['events'][0]->id_event ;}?> method='post'>
+                    <input type='hidden' name='register' value='1'/>
+                    <input type='submit' value='Sinscrire maintenant' class='buttonStyle1 buttonEventPos'/>
+                    </form>";
                 </div>
                 <div>
-                    <p class="textEvent">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum labore, 
-                        reiciendis nam temporibus quod quasi quidem assumenda esse officiis sed quibusdam voluptates 
-                        soluta laudantium deserunt expedita ratione laboriosam tempore consequuntur?
+                    <p class="textEvent"><?php echo $GLOBALS['events'][0]->event_body ?>
                     </p>
 
 

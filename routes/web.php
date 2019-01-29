@@ -20,6 +20,9 @@ Route::get('event', function () {
     return view('event');
 });
 
+Route::post('event', function () {
+    return view('event');
+});
 
 Route::get('event/{id}', function ($id) {
     return view('eventpics',$id_event = ["id_event"=>$id]);
