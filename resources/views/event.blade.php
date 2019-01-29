@@ -25,47 +25,38 @@
             <a href="javascript:ShowAll('nextEvent', 'finishedEvent')">Afficher tous</a>
         </div>
         <div id="nextEvent" class="hide show">
-            <div class="eventGrid ">
-                <div>
-                    <img class="picEvent imgPos center" style="background-image: url({{ asset('image/bgevent.jpg') }}" width="500" height="300">
-                    <p class="titleEvent tEventPos center"> - exiaMiam - Repas - Burger King - 25/10/2018 - </p>
-                    <button class="buttonStyle1 buttonEventPos ">S'inscrire maintenant ></button>
-                </div>
-                <div class="eventDesc center">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi laudantium dolores est vel omnis perferendis 
-                    praesentium quaerat blanditiis temporibus earum porro, commodi numquam, totam tempore voluptas ratione perspiciatis, 
-                    ducimus magni?
-                </div>
-            </div>
-            <div class="vector center"></div>
+            @foreach($events as $event)
+                @if($event->id_status_event == 2)
+                    <div class="eventGrid ">
+                        <div>
+                            <img class="picEvent imgPos center" src="image/{{$event->picture_presentation_event}}" width="500" height="300">
+                            <p class="titleEvent tEventPos center"> - {{$event->event_name}} - {{$event->event_location}} - {{$event->event_date}} - </p>
+                            <button class="buttonStyle1 buttonEventPos" onclick="location.href = 'http://127.0.0.1:8000/event/{{$event->id_event}}';">S'inscrire maintenant ></button>
+                        </div>
+                        <div class="eventDesc center">
+                            {{$event->event_body}}
+                        </div>
+                    </div>
+                    <div class="vector center"></div>
+                @endif
+            @endforeach
         </div>
         <div id="finishedEvent" class="hide show">
-            <div class="eventGrid">
-                <div>
-                    <img class="picEvent imgPos center" style="background-image: url({{ asset('image/bgevent2.jpg') }}" width="500" height="300">
-                    <p class="titleEvent tEventPos center"> - exiaLan - Tournois CS - Exia - 11/09/2018 - </p>
-                    <button class="buttonStyle1 buttonEventPos">Voir les photos ></button>
-                </div>
-                <div class="eventDesc center">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi laudantium dolores est vel omnis perferendis 
-                    praesentium quaerat blanditiis temporibus earum porro, commodi numquam, totam tempore voluptas ratione perspiciatis, 
-                    ducimus magni?
-                </div>
-            </div>
-            <div class="vector center"></div>
-            <div class="eventGrid">
-                <div>
-                    <img class="picEvent imgPos center" style="background-image: url({{ asset('image/bgevent2.jpg') }}" width="500" height="300">
-                    <p class="titleEvent tEventPos center"> - exiaLan - Tournois CS - Exia - 11/09/2018 - </p>
-                    <button class="buttonStyle1 buttonEventPos">Voir les photos ></button>
-                </div>
-                <div class="eventDesc center">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi laudantium dolores est vel omnis perferendis 
-                    praesentium quaerat blanditiis temporibus earum porro, commodi numquam, totam tempore voluptas ratione perspiciatis, 
-                    ducimus magni?
-                </div>
-            </div>
-            <div class="vector center"></div>
+            @foreach($events as $event)
+                @if($event->id_status_event == 3)
+                <div class="eventGrid ">
+                        <div>
+                            <img class="picEvent imgPos center" src="image/{{$event->picture_presentation_event}}" width="500" height="300">
+                            <p class="titleEvent tEventPos center"> - {{$event->event_name}} - {{$event->event_location}} - {{$event->event_date}} - </p>
+                            <button class="buttonStyle1 buttonEventPos ">voir les photos ></button>
+                        </div>
+                        <div class="eventDesc center">
+                            {{$event->event_body}}
+                        </div>
+                    </div>
+                    <div class="vector center"></div>
+                @endif
+            @endforeach
         </div>
     </div>
     @endsection

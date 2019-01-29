@@ -24,7 +24,7 @@ session_start();
     <div class="topMerchGrid">
         <div>
             <a href="#">
-                <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="500">
+                <img class="imgBorder imgPos center" src="{{ asset('image/arnold.jpg') }}" width="300" height="500">
             </a>
             <p class="nameProduct" width="300" height="100">
                 Black tuxedo / cool wear - <b>1.000 €</b>
@@ -32,7 +32,7 @@ session_start();
         </div>
         <div>
             <a href="#">
-                <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gaelz.jpg') }}" width="300" height="500">
+                <img class="imgBorder imgPos center" src="{{ asset('image/gaelz.jpg') }}" width="300" height="500">
             </a>
             <p class="nameProduct" width="300" height="100">
                 Young and Dynamic vest - <b>10 €</b>
@@ -40,7 +40,7 @@ session_start();
         </div>
         <div>
             <a href="#">
-                <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/shaq.jpg') }}" width="300" height="500">
+                <img class="imgBorder imgPos center" src="{{ asset('image/shaq.jpg') }}" width="300" height="500">
             </a>
             <p class="nameProduct" width="300" height="100">
                 Shaq'fu pro vest / 100% Sprite cramberry - <b>69.420 €</b>
@@ -53,65 +53,43 @@ session_start();
             <a href="javascript:HideEvent('accessories', 'apparels')">Vêtements</a>
             <a href="javascript:HideEvent('apparels', 'accessories')">Accessoires</a>
             <a href="javascript:ShowAll('apparels', 'accessories')">Afficher tous</a>
-        </div>
-    <div id=apparels class="hide show">
-        <div class="titleEvent tEventPos">vêtements :</div>
-        <div class="topMerchGrid">
-            <div>
-                <a href="#">
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="300">
-                </a>
-                <p class="nameProduct" width="300" height="100">
-                    Black tuxedo / cool wear - <b>1.000 €</b>
-                </p>
-            </div>
-            <div>
-                <a href="#">
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gaelz.jpg') }}" width="300" height="300">
-                </a>
-                <p class="nameProduct" width="300" height="100">
-                    Young and Dynamic vest - <b>10 €</b>
-                </p>
-            </div>
-            <div>
-                <a href="#">
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/shaq.jpg') }}" width="300" height="300">
-                </a>
-                <p class="nameProduct" width="300" height="100">
-                    Shaq'fu pro vest / 100% Sprite cramberry - <b>69.420 €</b>
-                </p>
+        </div> 
+        <div id=apparels class="hide show">
+            <div class="titleEvent tEventPos">vêtements :</div>
+                <div class="topMerchGrid">
+                @foreach ($products as $product)
+                    @if ($product->id_category == 1)
+                            <div>
+                            <a href="#">
+                                <img class="imgBorder imgPos center" src="image/{{$product->product_pic}}" width="300" height="300">
+                            </a>
+                            <p class="nameProduct" width="300" height="100">
+                                {{ $product->product_name }} - <b>{{ $product->product_price }} €</b>
+                            </p>
+                        </div>
+                    @endif
+                @endforeach
+                </div>
             </div>
         </div>
-    </div>
-    <div id="accessories" class="hide show">
-        <div class="titleEvent tEventPos">accessoires :</div>
-        <div class="topMerchGrid">
-            <div>
-                <a href="#">
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="300">
-                </a>
-                <p class="nameProduct" width="300" height="100">
-                    Black tuxedo / cool wear - <b>1.000 €</b>
-                </p>
-            </div>
-            <div>
-                <a href="#">
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gaelz.jpg') }}" width="300" height="300">
-                </a>
-                <p class="nameProduct" width="300" height="100">
-                    Young and Dynamic vest - <b>10 €</b>
-                </p>
-            </div>
-            <div>
-                <a href="#">
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/shaq.jpg') }}" width="300" height="300">
-                </a>
-                <p class="nameProduct" width="300" height="100">
-                    Shaq'fu pro vest / 100% Sprite cramberry - <b>69.420 €</b>
-                </p>
+        <div id=accessories class="hide show">
+            <div class="titleEvent tEventPos">accessoires :</div>
+                <div class="topMerchGrid">
+                @foreach ($products as $product)
+                    @if ($product->id_category == 2)
+                        <div>
+                            <a href="#">
+                                <img class="imgBorder imgPos center" src="image/{{$product->product_pic}}" width="300" height="300">
+                            </a>
+                            <p class="nameProduct" width="300" height="100">
+                                {{ $product->product_name }} - <b>{{ $product->product_price }} €</b>
+                            </p>
+                        </div>
+                    @endif
+                @endforeach
+                </div>
             </div>
         </div>
-    </div>
     @endsection
 </body>
 
