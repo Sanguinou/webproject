@@ -21,7 +21,7 @@ class CreateCategoryTable extends Migration
 
         DB::table('category')->insert([
             ['category_name' => 'Apparel'],
-            ['category_name' => 'Accessories'],
+            ['category_name' => 'Accessorie'],
         ]);
     }
 

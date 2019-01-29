@@ -18,6 +18,7 @@ class CreateOrderTable extends Migration
             $table->char('order_date', 8);
             $table->integer('order_price');
             $table->unsignedInteger('id_user');
+            $table->unsignedInteger('id_status_order');
             $table->timestamps();
         });
     }
