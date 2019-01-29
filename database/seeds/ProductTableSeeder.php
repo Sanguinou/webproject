@@ -17,9 +17,7 @@ class ProductTableSeeder extends Seeder
                 'product_price' => '50',
                 'product_desc' => 'vest couleur bleu avec le logo du cesi sur le coeur et le logo du BDE sur le dos',
                 'stock' => '52',
-                'id_category' => '1',             
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'id_category' => '1',
             ], 
 
             [

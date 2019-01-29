@@ -27,6 +27,18 @@ Route::get('shop', function () {
     return view('shop');
 });
 
+Route::get('ideabox', function () {
+    return view('idea');
+});
+
+Route::get('profile', function () {
+    return view('profile');
+});
+
+Route::get('item', function () {
+    return view('item');
+});
+
 Route::get('cart', function () {
     return view('cart');
 });

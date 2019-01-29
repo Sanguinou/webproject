@@ -1,3 +1,5 @@
+@extends('layout')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,13 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{  asset('css/style.css') }}"/>
     <script src="{{ asset('js/script.js') }}"></script>
 </head>
+
+    @section('navbar')
+        @parent
+    @endsection
+
 <body>
+    @section('content')
     <!-- main event presentation -->
     <h1 class="titleEventPic Center">exiaMiam - Repas - BurgerKing - 25/10/2018</h1>
     <div>
@@ -101,5 +109,11 @@
         </div>
         <div class="vector center"></div>
     </div>
+    @endsection
 </body>
+
+    @section('footer')
+        @parent
+    @endsection
+
 </html>

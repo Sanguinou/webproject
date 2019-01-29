@@ -1,3 +1,5 @@
+@extends('layout')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,13 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{  asset('css/style.css') }}"/>
     <script src="{{ asset('js/script.js') }}"></script>
 </head>
+
+    @section('navbar')
+        @parent
+    @endsection
+
 <body>
+    @section('content')
     <div>
         <h1 class="title">événement</h1>
         <button id=filterEvent class="buttonStyle3 buttonFilterPos dropdown" onclick="Drop('dropFilterEvent')">Filtre</button>
@@ -60,5 +68,11 @@
             <div class="vector center"></div>
         </div>
     </div>
+    @endsection
 </body>
+
+    @section('footer')
+        @parent
+    @endsection
+
 </html>
