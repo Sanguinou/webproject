@@ -16,7 +16,8 @@ class CreateSchoolTable extends Migration
         Schema::create('school', function (Blueprint $table) {
             $table->increments('id_school');
             $table->char('school_name', 16);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
 
         DB::table('school')->insert([

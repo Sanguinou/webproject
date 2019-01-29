@@ -12,7 +12,6 @@
 */
 
 Route::get('/', function () {
-    $products = DB::table('product')->get();
     return view('welcome');
 });
 
@@ -26,4 +25,8 @@ Route::get('event/event1', function () {
 
 Route::get('shop', function () {
     return view('shop');
+});
+
+Route::get('cart', function () {
+    return view('cart');
 });

@@ -20,7 +20,8 @@ class CreateProductTable extends Migration
             $table->integer('product_price');
             $table->integer('stock');
             $table->unsignedInteger('id_category');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

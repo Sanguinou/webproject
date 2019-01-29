@@ -27,9 +27,7 @@ class ProductTableSeeder extends Seeder
                 'product_price' => '35',
                 'product_desc' => 'le classic pull avec le logo du BDE sur l\'avant',
                 'stock' => '69',
-                'id_category' => '1',               
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'id_category' => '1',
             ],
 
             [
@@ -37,9 +35,7 @@ class ProductTableSeeder extends Seeder
                 'product_price' => '16',
                 'product_desc' => 'mug blanc avec le logo cesicorp',
                 'stock' => '12',
-                'id_category' => '2',               
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'id_category' => '2',
             ],
 
             [
@@ -47,9 +43,7 @@ class ProductTableSeeder extends Seeder
                 'product_price' => '6',
                 'product_desc' => 'autocollant du logo du CESI',
                 'stock' => '0',
-                'id_category' => '2',               
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'id_category' => '2',
             ]
         ]);
     }

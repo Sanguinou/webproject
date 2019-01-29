@@ -17,11 +17,11 @@
             <a href="javascript:ShowAll('nextEvent', 'finishedEvent')">Afficher tous</a>
         </div>
         <div id="nextEvent" class="hide show">
-            <div class="eventGrid">
+            <div class="eventGrid ">
                 <div>
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/bgevent.jpg') }}" width="500" height="300">
+                    <img class="picEvent imgPos center" style="background-image: url({{ asset('image/bgevent.jpg') }}" width="500" height="300">
                     <p class="titleEvent tEventPos center"> - exiaMiam - Repas - Burger King - 25/10/2018 - </p>
-                    <button class="buttonStyle1 buttonEventPos">S'inscrire maintenant ></button>
+                    <button class="buttonStyle1 buttonEventPos ">S'inscrire maintenant ></button>
                 </div>
                 <div class="eventDesc center">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi laudantium dolores est vel omnis perferendis 
@@ -34,7 +34,7 @@
         <div id="finishedEvent" class="hide show">
             <div class="eventGrid">
                 <div>
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/bgevent2.jpg') }}" width="500" height="300">
+                    <img class="picEvent imgPos center" style="background-image: url({{ asset('image/bgevent2.jpg') }}" width="500" height="300">
                     <p class="titleEvent tEventPos center"> - exiaLan - Tournois CS - Exia - 11/09/2018 - </p>
                     <button class="buttonStyle1 buttonEventPos">Voir les photos ></button>
                 </div>
@@ -47,7 +47,7 @@
             <div class="vector center"></div>
             <div class="eventGrid">
                 <div>
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/bgevent2.jpg') }}" width="500" height="300">
+                    <img class="picEvent imgPos center" style="background-image: url({{ asset('image/bgevent2.jpg') }}" width="500" height="300">
                     <p class="titleEvent tEventPos center"> - exiaLan - Tournois CS - Exia - 11/09/2018 - </p>
                     <button class="buttonStyle1 buttonEventPos">Voir les photos ></button>
                 </div>

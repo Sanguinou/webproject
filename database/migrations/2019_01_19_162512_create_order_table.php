@@ -19,7 +19,8 @@ class CreateOrderTable extends Migration
             $table->integer('order_price');
             $table->unsignedInteger('id_user');
             $table->unsignedInteger('id_status_order');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

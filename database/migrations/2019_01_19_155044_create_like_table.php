@@ -16,7 +16,8 @@ class CreateLikeTable extends Migration
         Schema::create('like', function (Blueprint $table) {
             $table->unsignedInteger('id_picture_event');
             $table->unsignedInteger('id_user');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

@@ -19,7 +19,8 @@ class CreatePictureEventTable extends Migration
             $table->char('picture_event_body', 255);
             $table->unsignedInteger('id_user');
             $table->unsignedInteger('id_event');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
