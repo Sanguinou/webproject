@@ -1,11 +1,65 @@
 <?php
 session_start();
 $MaxEventsShown = 1;
+
+
+
+
 if(isset($_SESSION['timeout'])){
     if ($_SESSION['timeout'] + 5 * 60 < time()) {
         session_unset(); 
     };
-};?>
+};
+
+$url_product="http://localhost:3000/api/products/top";
+$url_event = "http://localhost:3000/api/events";
+    if (isset($url_event)){
+        $myClient = new GuzzleHttp\Client([
+        'headers'=> ['User-Agent' => 'MyReader']
+    ]);
+
+    $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 1]], ['verify'=>false]);
+
+        if ($resp -> getStatusCode() == 200){
+            $body = $resp -> getBody();
+            $GLOBALS['events'] = json_decode($body);
+
+        };
+        for($i=0;$i<$MaxEventsShown;$i++){ 
+            echo "<p> events: ".$GLOBALS['events'][$i]->event_name."</p>";
+        };
+    };
+
+    if (isset($url_event)){
+        $myClient = new GuzzleHttp\Client([
+    ]);
+
+    $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 2]], ['verify'=>false]);
+
+        if ($resp -> getStatusCode() == 200){
+            $body = $resp -> getBody();
+            $GLOBALS['ideas'] = json_decode($body);
+            for($i=0;$i<0;$i++){ 
+                echo "<p> ideas: ".$GLOBALS['ideas'][$i]->event_name."</p>";
+            };
+        };
+    };
+
+    if (isset($url_product)){
+        $myClient = new GuzzleHttp\Client([
+        'headers'=> ['User-Agent' => 'MyReader']
+    ]);
+
+    $resp = $myClient -> request('GET',$url_product,['verify'=>false]);
+        if ($resp -> getStatusCode() == 200){
+            $body = $resp -> getBody();
+            $GLOBALS['products'] = json_decode($body);
+
+        };
+    };
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +81,7 @@ if(isset($_SESSION['timeout'])){
             <div class="welcomeEventGrid">
                 <div>
                     <img class="imgBorder imgPos center" src="{{ asset('image/bgevent.jpg') }}" width="600" height="300">
-                    <p class="titleEvent tEventPos center"> - exiaMiam - Repas - Burger King - 25/10/2018 - </p>
+                    <p class="titleEvent tEventPos center"><?php echo $GLOBALS['events'][0]->event_name." - ".$GLOBALS['events'][0]->event_date?> </p>
                     <button class="buttonStyle1 buttonEventPos">S'inscrire maintenant ></button>
                 </div>
                 <div>
@@ -36,57 +90,6 @@ if(isset($_SESSION['timeout'])){
                         soluta laudantium deserunt expedita ratione laboriosam tempore consequuntur?
                     </p>
 
-
-        <?php     
-        $url_product="http://localhost:3000/products/top";
-        $url_event = "http://localhost:3000/events";
-            if (isset($url_event)){
-                $myClient = new GuzzleHttp\Client([
-                'headers'=> ['User-Agent' => 'MyReader']
-            ]);
-
-            $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 1]], ['verify'=>false]);
-
-                if ($resp -> getStatusCode() == 200){
-                    $body = $resp -> getBody();
-                    $obj = json_decode($body);
-                    for($i=0;$i<$MaxEventsShown;$i++){ 
-                        echo "<p> events: ".$obj[$i]->event_name."</p>";
-                    };
-                };
-            };
-
-            if (isset($url_event)){
-                $myClient = new GuzzleHttp\Client([
-                'headers'=> ['User-Agent' => 'MyReader']
-            ]);
-
-            $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 2]], ['verify'=>false]);
-
-                if ($resp -> getStatusCode() == 200){
-                    $body = $resp -> getBody();
-                    $obj = json_decode($body);
-                    for($i=0;$i<$MaxEventsShown;$i++){ 
-                        echo "<p> ideas: ".$obj[$i]->event_name."</p>";
-                    };
-                };
-            };
-
-            if (isset($url_product)){
-                $myClient = new GuzzleHttp\Client([
-                'headers'=> ['User-Agent' => 'MyReader']
-            ]);
-
-            $resp = $myClient -> request('GET',$url_product,['verify'=>false]);
-                if ($resp -> getStatusCode() == 200){
-                    $body = $resp -> getBody();
-                    $obj = json_decode($body);
-                        for($i=0;$i<$MaxEventsShown;$i++){ 
-                            echo "<p>".$obj[$i]->Product_name."</p>";
-                        };
-                };
-            };
-            ?>
 
 
             <div class="content">

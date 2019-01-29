@@ -35,7 +35,7 @@ session_start();
     </div>
 =======
     <?php
-    $url = "http://localhost:3000/login";
+    $url = "http://localhost:3000/api/login";
     if (isset($url) && isset($_SESSION['token'])){
         $myClient = new GuzzleHttp\Client([
             'headers'=> ['User-Agent' => 'MyReader','Authorization' => 'bearer '.$_SESSION['token']]
@@ -57,11 +57,6 @@ session_start();
             };
 
     ?>
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 7442dfc910de8c0674ac47a7a81b021c9ee0e89f
->>>>>>> master
 </body>
 </html>

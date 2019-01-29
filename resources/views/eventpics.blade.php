@@ -1,3 +1,17 @@
+<?php
+session_start();
+$url_event="http://localhost:3000/api/events/".$id_event;
+if (isset($url_event)){
+    $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+    $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 1]], ['verify'=>false]);
+    if ($resp -> getStatusCode() == 200){
+        $body = $resp -> getBody();
+        $GLOBALS['event'] = json_decode($body);
+
+                echo "<p> events: ".$GLOBALS['event'][0]->event_name."</p>";
+    };
+};
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,17 +19,37 @@
     <title>BDE Cesi - Event</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{{  asset('css/style.css') }}"/>
-    <script src="{{ asset('js/script.js') }}"></script>
+  <!----<script src="{{ asset('js/script.js') }}"></script>---->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+<body>
+    <form method="post" action="eventpics" enctype="multipart/form-data">
+        <input type="file" name="files[]" multiple>
+        <input type="hidden" name="test">
+        <input type="submit" value="Upload File" name="submit">
+    </form>
+    <?php 
+    if (isset($_POST['test'])){
+    echo "branlette";
+    }
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('input[type="file"]').change(function(e){
+                var fileName = e.target.files[0].name;
+                );
+            });
+        });
+
+</script>
+<script src="{{ asset('js/upload.js') }}"></script>
     <!-- main event presentation -->
-    <h1 class="titleEventPic Center">exiaMiam - Repas - BurgerKing - 25/10/2018</h1>
+    <h1 class="titleEventPic Center"><?php echo $GLOBALS['event'][0]->event_name ;?></h1>
     <div>
-        <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/bgevent.jpg') }}" width="1000" height="600">
+        <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gael.jpg') }}" width="1000" height="600">
         <div class="eventDescPic center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi laudantium dolores est vel omnis perferendis 
-            praesentium quaerat blanditiis temporibus earum porro, commodi numquam, totam tempore voluptas ratione perspiciatis, 
-            ducimus magni?
+        <?php echo $GLOBALS['event'][0]->event_body ;?>
         </div>
     </div>
     <div class="vector center"></div>

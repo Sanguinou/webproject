@@ -26,7 +26,7 @@ $(document).ready(function(){
 </script>
 
     <?php
-     $url = "http://localhost:3000/login";
+     $url = "http://localhost:3000/api/login";
      if (isset($url) && isset($_POST['password'])){
          
          $myClient = new GuzzleHttp\Client([

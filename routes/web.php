@@ -19,12 +19,14 @@ Route::get('/', function () {
 Route::get('event', function () {
     return view('event');
 });
+
+
 Route::get('event/{id}', function ($id) {
-    return view('event',$id_event = ["id_event"=>$id]);
+    return view('eventpics',$id_event = ["id_event"=>$id]);
 });
 
-Route::get('event/event1', function () {
-    return view('eventpics');
+Route::post('event/{id}', function ($id) {
+    return view('eventpics',$id_event = ["id_event"=>$id]);
 });
 
 Route::get('shop', function () {

@@ -12,7 +12,7 @@ use \Firebase\JWT\JWT;
 </head>
 <body>
     <?php
-    $url = "http://localhost:3000/login";
+    $url = "http://localhost:3000/api/login";
     if (isset($url)){
         $myClient = new GuzzleHttp\Client([
             'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']

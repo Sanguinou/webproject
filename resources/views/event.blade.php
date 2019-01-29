@@ -20,9 +20,9 @@ if(isset($_SESSION['timeout'])){
 <body>
 <?php
 
-$url_event = "http://localhost:3000/events";
+$url_event = "http://localhost:3000/api/events";
     if (isset($url_event)){
-        $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+        $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader'],['id' => $id_event]]);
         $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 1]], ['verify'=>false]);
         if ($resp -> getStatusCode() == 200){
             $body = $resp -> getBody();
