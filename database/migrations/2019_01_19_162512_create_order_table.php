@@ -15,11 +15,15 @@ class CreateOrderTable extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id_order');
-            $table->char('order_date', 8);
             $table->integer('order_price');
             $table->unsignedInteger('id_user');
             $table->unsignedInteger('id_status_order');
+<<<<<<< HEAD
             $table->timestamps();
+=======
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
+>>>>>>> simon
         });
     }
 

@@ -20,9 +20,13 @@ class EventTableSeeder extends Seeder
                 'picture_presentation_event' => str_random(5).'.png',
                 'id_user_create' => '2',
                 'id_status_event' => '3',
+<<<<<<< HEAD
                 'id_user_validate' => '1',                
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
+=======
+                'id_user_validate' => '1',
+>>>>>>> simon
             ], 
 
             [
@@ -33,9 +37,13 @@ class EventTableSeeder extends Seeder
                 'picture_presentation_event' => str_random(5).'.png',
                 'id_user_create' => '2',
                 'id_status_event' => '2',
+<<<<<<< HEAD
                 'id_user_validate' => '1',      
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
+=======
+                'id_user_validate' => '1',
+>>>>>>> simon
             ],
 
             [
@@ -47,8 +55,11 @@ class EventTableSeeder extends Seeder
                 'id_user_create' => '2',
                 'id_status_event' => '1',
                 'id_user_validate' => null,
+<<<<<<< HEAD
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
+=======
+>>>>>>> simon
             ]
         ]);
     }

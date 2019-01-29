@@ -16,7 +16,8 @@ class CreateStatusEventTable extends Migration
         Schema::create('status_event', function (Blueprint $table) {
             $table->increments('id_status_event');
             $table->char('status_event_name', 32);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
 
         DB::table('status_event')->insert([

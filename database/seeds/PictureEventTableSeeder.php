@@ -16,18 +16,26 @@ class PictureEventTableSeeder extends Seeder
                 'picture_event_name' => 'bgevent.jpg',
                 'picture_event_body' => 'table des A1, la meilleure des promos',
                 'id_user' => '1',
+<<<<<<< HEAD
                 'id_event' => '1',                
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
+=======
+                'id_event' => '1',
+>>>>>>> simon
             ], 
 
             [
                 'picture_event_name' => 'bgevent2.jpg',
                 'picture_event_body' => 'les bros !!',
                 'id_user' => '1',
+<<<<<<< HEAD
                 'id_event' => '1',                
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
+=======
+                'id_event' => '1',
+>>>>>>> simon
             ]
         ]);
     }
