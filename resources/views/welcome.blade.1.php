@@ -55,26 +55,39 @@ if(isset($_SESSION['timeout'])){
                 height: 100vh;
                 margin: 0;
             }
+<<<<<<< HEAD
 
             .full-height {
                 height: 100vh;
             }
 
+=======
+            .full-height {
+                height: 100vh;
+            }
+>>>>>>> simon
             .flex-center {
                 align-items: center;
                 display: flex;
                 justify-content: center;
             }
+<<<<<<< HEAD
 
             .position-ref {
                 position: relative;
             }
 
+=======
+            .position-ref {
+                position: relative;
+            }
+>>>>>>> simon
             .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
             }
+<<<<<<< HEAD
 
             .content {
                 text-align: center;
@@ -84,6 +97,14 @@ if(isset($_SESSION['timeout'])){
                 font-size: 84px;
             }
 
+=======
+            .content {
+                text-align: center;
+            }
+            .title {
+                font-size: 84px;
+            }
+>>>>>>> simon
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -93,7 +114,10 @@ if(isset($_SESSION['timeout'])){
                 text-decoration: none;
                 text-transform: uppercase;
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> simon
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -109,9 +133,13 @@ if(isset($_SESSION['timeout'])){
                 $myClient = new GuzzleHttp\Client([
                 'headers'=> ['User-Agent' => 'MyReader']
             ]);
+<<<<<<< HEAD
 
             $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 1]], ['verify'=>false]);
 
+=======
+            $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 1]], ['verify'=>false]);
+>>>>>>> simon
                 if ($resp -> getStatusCode() == 200){
                     $body = $resp -> getBody();
                     $obj = json_decode($body);
@@ -120,14 +148,21 @@ if(isset($_SESSION['timeout'])){
                     };
                 };
             };
+<<<<<<< HEAD
 
+=======
+>>>>>>> simon
             if (isset($url_event)){
                 $myClient = new GuzzleHttp\Client([
                 'headers'=> ['User-Agent' => 'MyReader']
             ]);
+<<<<<<< HEAD
 
             $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 2]], ['verify'=>false]);
 
+=======
+            $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 2]], ['verify'=>false]);
+>>>>>>> simon
                 if ($resp -> getStatusCode() == 200){
                     $body = $resp -> getBody();
                     $obj = json_decode($body);
@@ -136,12 +171,18 @@ if(isset($_SESSION['timeout'])){
                     };
                 };
             };
+<<<<<<< HEAD
 
+=======
+>>>>>>> simon
             if (isset($url_product)){
                 $myClient = new GuzzleHttp\Client([
                 'headers'=> ['User-Agent' => 'MyReader']
             ]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> simon
             $resp = $myClient -> request('GET',$url_product,['verify'=>false]);
                 if ($resp -> getStatusCode() == 200){
                     $body = $resp -> getBody();
@@ -231,4 +272,8 @@ if(isset($_SESSION['timeout'])){
     </div>
 </body>
 </html>
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> master
+>>>>>>> simon

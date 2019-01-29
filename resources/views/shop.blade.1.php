@@ -40,7 +40,10 @@ session_start();
         $myClient = new GuzzleHttp\Client([
             'headers'=> ['User-Agent' => 'MyReader','Authorization' => 'bearer '.$_SESSION['token']]
         ]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> simon
         $resp = $myClient -> request('GET',$url,['http_errors' => false]);
         if ($resp -> getStatusCode() == 200){
             $body = $resp -> getBody();
@@ -55,7 +58,10 @@ session_start();
     } else {
             echo "<p> the token is not loaded </p>";
             };
+<<<<<<< HEAD
 
+=======
+>>>>>>> simon
     ?>
 <<<<<<< HEAD
 

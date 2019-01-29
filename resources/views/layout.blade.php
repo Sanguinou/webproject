@@ -71,7 +71,7 @@ footer {
                     <li><a href="http://127.0.0.1:8000/event">événement</a></li>
                     <li><a href="http://127.0.0.1:8000/shop">Boutique</a></li>
                     <li><a href="http://127.0.0.1:8000/ideabox">Boite à idée</a></li>
-                    <li id="connexion"><a href="connexion.php">Connexion</a></li>
+                    <li id="connexion"><a href="connection">Connexion</a></li>
                 </ul>
             </nav>
         </div>

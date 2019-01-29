@@ -26,14 +26,17 @@ $(document).ready(function(){
 </script>
 
     <?php
-     $url = "http://localhost:3000/api/login";
-     if (isset($url) && isset($_POST['password'])){
+
+    $urlLog = "http://localhost:3000/api/login";
+    $urlReg = "http://localhost:3000/api/users";
+
+    if (isset($urlLog) && isset($_POST['password']) && !isset($_POST['prenom'])){
          
          $myClient = new GuzzleHttp\Client([
              'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']
          ]);
         try {
-         $resp =  $myClient -> request('POST',$url,[
+         $resp =  $myClient -> request('POST',$urlLog,[
              'form_params'=> [
                  'password' => $_POST['password'],
                  'email' => $_POST['email']
@@ -47,21 +50,40 @@ $(document).ready(function(){
              $obj = json_decode($resp->getBody());
              $_SESSION['token'] = $obj->token;
              $_SESSION['decoded'] = JWT::decode($_SESSION['token'],'secret',array('HS256'));
-             $_SESSION['username'] = $_SESSION['decoded']->last_name;
              $_SESSION['timeout'] = time();
              header("Location:http://localhost:8000/");
              exit();
             }
         }
-        }else{
-             echo "<button id='test'>test</button>";
-             echo  "<form id='form' action='login' method='post'>
-                            <input type='text' name='email'/>
-                            <input type='password' name='password'/>
-                            <input type='submit' value='Login' />
-                    </form>";
-         };
-
+    }else if (isset($url) && isset($_POST['password']) && isset($_POST['prenom'])){
+         
+            $myClient = new GuzzleHttp\Client([
+                'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']
+            ]);
+           try {
+            $resp =  $myClient -> request('POST',$urlReg,[
+                'form_params'=> [
+                    'password' => $_POST['password'],
+                    'email' => $_POST['email'],
+                    'first_name' => $_POST['first_name'],
+                    'last_name' => $_POST['last_name'],
+                    'School_name' => $_POST['centre']
+                ]
+                ]);} 
+           catch (ClientException $e) {     
+                echo "seems like something went wrong bro";
+           }
+           if(isset($resp)){
+            if ($resp -> getStatusCode() == 200){
+                $obj = json_decode($resp->getBody());
+                $_SESSION['token'] = $obj->token;
+                $_SESSION['decoded'] = JWT::decode($_SESSION['token'],'secret',array('HS256'));
+                $_SESSION['timeout'] = time();
+                header("Location:http://localhost:8000/");
+                exit();
+               }
+           }
+           }
     ?>
 
 </body>

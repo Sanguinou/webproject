@@ -1,3 +1,5 @@
+@extends('layout')
+
 <?php
 session_start();
 
@@ -6,7 +8,6 @@ if(isset($_SESSION['timeout'])){
         session_unset(); 
     };
 };
-$GLOBALS['cours']=[];
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,13 @@ $GLOBALS['cours']=[];
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
+
+    @section('navbar')
+        @parent
+    @endsection
+
 <body>
+    @section('content')
     <div>
         <h1 class="title">événement</h1>
         <button id=filterEvent class="buttonStyle3 buttonFilterPos dropdown" onclick="Drop('dropFilterEvent')">Filtre</button>
@@ -99,6 +106,13 @@ $(document).ready(function(){
   });
 });
 </script>
+@endsection
 
+           
 </body>
+
+    @section('footer')
+        @parent
+    @endsection
+
 </html>

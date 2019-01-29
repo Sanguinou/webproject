@@ -1,3 +1,5 @@
+@extends('layout',['isConnected' => 'Page Title'])
+
 <?php
 session_start();
 $MaxEventsShown = 1;
@@ -6,7 +8,12 @@ $MaxEventsShown = 1;
 if(isset($_SESSION['timeout'])){
     if ($_SESSION['timeout'] + 5 * 60 < time()) {
         session_unset(); 
+    }else{
+        echo "@extends('layout')";
     };
+}else{
+    echo "@extends('layout')";
+
 };
 
 $url_product="http://localhost:3000/api/products/top";
@@ -53,6 +60,7 @@ $url_event = "http://localhost:3000/api/events";
         };
     };
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,10 +69,13 @@ $url_event = "http://localhost:3000/api/events";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{{  asset('css/style.css') }}" />
 </head>
+@section('navbar')
+        @parent
+@endsection
 <body>
-    <div class="welcomeGrid">
-        <!-- a changer en php -->
+@section('content')
 
+    <div class="welcomeGrid">
         <div>
             <div class="blurBackground" style="background-image: url({{ asset('image/bgevent.jpg') }})"></div>
             <div class="welcomeEventGrid">
@@ -80,70 +91,60 @@ $url_event = "http://localhost:3000/api/events";
                     </form>";
                 </div>
                 <div>
-                    <p class="textEvent"><?php echo $GLOBALS['events'][0]->event_body ?>
-                    </p>
-
-
-
+                    <div class="textEvent center">
+                        <?php echo $GLOBALS['events'][0]->event_body ?>
+                    </div>
+                </div>
             <div class="content">
                 <div class="title m-b-md">
                 </div>
+                <button class="buttonStyle2 viewAllPos" onclick="location.href = 'http://127.0.0.1:8000/event';"> Voir Tout ></button>
             </div>
         </div>
         <div>
             <h1 class="title">Boutique</h1>
-            <button class="buttonStyle2 viewAllPos"> voir tout ></button>
+            <button class="buttonStyle2 viewAllPos" onclick="location.href =  'http://127.0.0.1:8000/shop';"> voir tout ></button>
             <div class="topMerchGrid">
                 <div>
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="500">
-                    <p class="nameProduct" width="300" height="100">
+                    <a href="#">
+                        <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="500">
+                    </a>
+                    <div class="nameProduct" width="300" height="100">
                         Black tuxedo / cool wear - <b>1.000 €</b>
-                    </p>
+                    </div>
                 </div>
                 <div>
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gaelz.jpg') }}" width="300" height="500">
-                    <p class="nameProduct" width="300" height="100">
+                    <a href="#">
+                        <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gaelz.jpg') }}" width="300" height="500">
+                    </a>
+                    <div class="nameProduct" width="300" height="100">
                         Young and Dynamic vest - <b>10 €</b>
-                    </p>
+                    </div>
                 </div>
                 <div>
-                    <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/shaq.jpg') }}" width="300" height="500">
-                    <p class="nameProduct" width="300" height="100">
+                    <a href="#">
+                        <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/shaq.jpg') }}" width="300" height="500">
+                    </a>
+                    <div class="nameProduct" width="300" height="100">
                         Shaq'fu pro vest / 100% Sprite cramberry - <b>69.420 €</b>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
         <div>
             <h1 class="title">Boite à Idée</h1>
-            <button class="buttonStyle2 viewAllPos"> Voir Tout ></button>
-            <div class="ideaGrid">
-                <div class="ideaBox imgPos">
-                    <div class="ideaBoxGrid">
-                        <div>
-                            <img class="imgProfileBorder imgProfilePos " style="background-image: url({{ asset('image/LP.png') }}" width="150" height="150">
-                            <div class="ideaBoxName center" width="200" height="75"> <b>Logan Paul</b> </div>
-                            <button class="buttonStyle1 buttonIdeaPos center">Voir plus ></button>
-                        </div>
-                        <div class="ideaBoxText center">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi reiciendis, 
-                            quis dicta quas sit reprehenderit. Dolorum, maiores deserunt in, unde dicta ullam 
-                            voluptatum labore id debitis minima nulla numquam facilis.
-                        </div>
+            <button class="buttonStyle2 viewAllPos" onclick="location.href = 'http://127.0.0.1:8000/ideabox';"> Voir Tout ></button>
+            <div class="ideaBox imgPos center">
+                <div class="ideaBoxGrid">
+                    <div>
+                        <img class="imgProfileBorder imgProfilePos " style="background-image: url({{ asset('image/LP.png') }}" width="150" height="150">
+                        <div class="ideaBoxName center" width="200" height="75"> <b>Logan Paul</b> </div>
+                        <button class="buttonStyle1 buttonIdeaPos center">Voir plus ></button>
                     </div>
-                </div>
-                <div class="ideaBox imgPos">
-                    <div class="ideaBoxGrid">
-                        <div>
-                            <img class="imgProfileBorder imgProfilePos " style="background-image: url({{ asset('image/LP.png') }}" width="150" height="150">
-                            <div class="ideaBoxName center" width="200" height="75"> <b>Logan Paul</b> </div>
-                            <button class="buttonStyle1 buttonIdeaPos center">voir plus ></button>
-                        </div>
-                        <div class="ideaBoxText center">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi reiciendis, 
-                            quis dicta quas sit reprehenderit. Dolorum, maiores deserunt in, unde dicta ullam 
-                            voluptatum labore id debitis minima nulla numquam facilis.
-                        </div>
+                    <div class="ideaBoxText center">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi reiciendis, 
+                        quis dicta quas sit reprehenderit. Dolorum, maiores deserunt in, unde dicta ullam 
+                        voluptatum labore id debitis minima nulla numquam facilis.
                     </div>
                 </div>
             </div>
@@ -151,11 +152,15 @@ $url_event = "http://localhost:3000/api/events";
         <div>
             <h1 class="title">Réseaux Sociaux</h1>
             <div class="topMerchGrid">
-                <button class="buttonNetwork center" style="background-image: url({{ asset('image/fblogo.png') }}"></button>
-                <button class="buttonNetwork center" style="background-image: url({{ asset('image/tlogo.png') }}"></button>
-                <button class="buttonNetwork center" style="background-image: url({{ asset('image/cesilogo.png') }}"></button>
+                <button class="buttonNetwork center" style="background-image: url({{ asset('image/fblogo.png') }}" onclick="location.href = 'http://www.facebook.com/CesiCampusArras/?ref=br_rs';"></button>
+                <button class="buttonNetwork center" style="background-image: url({{ asset('image/tlogo.png') }}" onclick="location.href = 'https://twitter.com/eXiaCesiArras';"></button>
+                <button class="buttonNetwork center" style="background-image: url({{ asset('image/cesilogo.png') }}" onclick="location.href = 'http://www.cesi.fr';"></button>
             </div>
         </div> 
     </div>
+    @endsection
 </body>
+    @section('footer')
+        @parent
+    @endsection
 </html>

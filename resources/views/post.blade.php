@@ -18,14 +18,12 @@ use \Firebase\JWT\JWT;
             'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']
         ]);
     
-
         $resp = $myClient -> request('POST',$url,[
             'form_params'=> [
                 'password' => 'tryhard',
                 'email' => 'test@test.com'
             ]
             ]);
-
         if ($resp -> getStatusCode() == 200){
             $obj = json_decode($resp->getBody());
             $_SESSION['token'] = $obj->token;

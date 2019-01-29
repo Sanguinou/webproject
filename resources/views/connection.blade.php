@@ -2,6 +2,76 @@
 
 <?php
 session_start();
+use GuzzleHttp\Psr7;
+use \Firebase\JWT\JWT;
+use GuzzleHttp\Exception\ClientException;
+
+if(isset($_SESSION['timeout'])){
+    if ($_SESSION['timeout'] + 5 * 60 < time()) {
+        session_unset();
+        header("Location:http://localhost:8000/connexion");
+        exit();     
+    }else{
+        header("Location:http://localhost:8000/");
+        exit();  
+    }; 
+};
+
+$urlLog = "http://localhost:3000/api/login";
+$urlReg = "http://localhost:3000/api/users";
+
+if (isset($urlLog) && isset($_POST['password']) && !isset($_POST['prenom'])){
+     
+     $myClient = new GuzzleHttp\Client([
+         'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']
+     ]);
+    try {
+     $resp =  $myClient -> request('POST',$urlLog,[
+         'form_params'=> [
+             'password' => $_POST['password'],
+             'email' => $_POST['email']
+         ]
+         ]);} 
+    catch (ClientException $e) {     
+         echo "seems like something went wrong bro";
+    }
+    if(isset($resp)){
+     if ($resp -> getStatusCode() == 200){
+         $obj = json_decode($resp->getBody());
+         $_SESSION['token'] = $obj->token;
+         $_SESSION['decoded'] = JWT::decode($_SESSION['token'],'secret',array('HS256'));
+         $_SESSION['timeout'] = time();
+         header("Location:http://localhost:8000/");
+         exit();
+        }
+    }
+}else if (isset($url) && isset($_POST['password']) && isset($_POST['prenom'])){
+     
+        $myClient = new GuzzleHttp\Client([
+            'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']]);
+       try {
+        $resp =  $myClient -> request('POST',$urlReg,[
+            'form_params'=> [
+                'password' => $_POST['password'],
+                'email' => $_POST['email'],
+                'first_name' => $_POST['first_name'],
+                'last_name' => $_POST['last_name'],
+                'School_name' => $_POST['centre']]]);
+        } catch (ClientException $e) {     
+            echo "seems like something went wrong bro";
+       };
+       if(isset($resp)){
+        if ($resp -> getStatusCode() == 200){
+            $obj = json_decode($resp->getBody());
+            $_SESSION['token'] = $obj->token;
+            $_SESSION['decoded'] = JWT::decode($_SESSION['token'],'secret',array('HS256'));
+            $_SESSION['timeout'] = time();
+            header("Location:http://localhost:8000/");
+            exit();
+           };
+       };
+};
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,11 +96,11 @@ session_start();
             <!-- Inscription bloc -->                
             <div id="inscription">                   
                 <h3>Inscription</h3>
-                <form method="POST" action="">
+                <form method="POST" action="connection">
                     <label for="nom">Nom :</label>
-                    <input class="input" type="text" placeholder="Votre nom" id="nom" name="nom" />
+                    <input class="input" type="text" placeholder="Votre nom" id="nom" name="last_name" />
                     <label for="prenom">Prénom :</label>
-                    <input class="input" type="text" placeholder="Votre Prénom" id="prenom" name="prenom" />
+                    <input class="input" type="text" placeholder="Votre Prénom" id="prenom" name="first_name" />
                     <label for="centre">Centre :</label>
                     <select class="input" name="centre">
                         <option value="arras">Arras</option>
@@ -41,15 +111,14 @@ session_start();
                     <label for="email">E-Mail :</label>
                     <input class="input" type="email" placeholder="Votre e-mail" id="email" name="email" />
                     <label for="mdp">Mot de passe :</label>
-                    <input class="input" type="password" placeholder="Votre mot de passe" id="mdp" name="mdp" />
-                    <!-- Button for sign up -->
+                    <input class="input" type="password" placeholder="Votre mot de passe" id="mdp" name="password" />
                     <input id="signup" type="submit" name="forminscritpion" value="Sign up">
                 </form>
             </div>
             <!-- Connexion bloc -->
             <div id="connexion">                   
                 <h3>Connexion</h3>
-                <form id="con" method="POST" action="">
+                <form id="con" method="POST" action="connection">
                     <table id="connect">
                         <tr>
                             <td><label for="email">E-Mail :</label></td>
@@ -57,7 +126,7 @@ session_start();
                         </tr>
                         <tr>
                             <td><label for="mdp">Mot de passe :</label></td>
-                            <td><input class="input_login" type="password" placeholder="Votre mot de passe" id="mdp" name="mdp" /></td>
+                            <td><input class="input_login" type="password" placeholder="Votre mot de passe" id="mdp" name="password" /></td>
                         </tr>  
                     </table> 
                     <!-- Button for sign up -->
