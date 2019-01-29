@@ -16,7 +16,8 @@ class CreateDisplayTable extends Migration
         Schema::create('display', function (Blueprint $table) {
             $table->unsignedInteger('id_picture_product');
             $table->unsignedInteger('id_product');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

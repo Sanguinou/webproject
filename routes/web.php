@@ -11,29 +11,38 @@
 |
 */
 
-
 Route::get('/', function () {
-    $products = DB::table('product')->get();
     return view('welcome');
 });
+
 Route::get('event', function () {
     return view('event');
 });
-Route::get('event/{id}', function ($id) {
-    return view('eventpics',$id_event = ["id_event"=>$id]);
+
+Route::get('event/event1', function () {
+    return view('eventpics');
 });
-Route::post('event/{id}', function ($id) {
-    return view('eventpics',$id_event = ["id_event"=>$id]);
-});
+
 Route::get('shop', function () {
     return view('shop');
 });
-Route::get('login', function () {
-    return view('login');
+
+Route::get('ideabox', function () {
+    return view('idea');
 });
-Route::post('login', function () {
-    return view('login');
+
+Route::get('profile', function () {
+    return view('profile');
 });
-Route::get('post', function () {
-    return view('post');
+
+Route::get('item', function () {
+    return view('item');
+});
+
+Route::get('cart', function () {
+    return view('cart');
+});
+
+Route::get('connection', function () {
+    return view('connection');
 });

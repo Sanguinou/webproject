@@ -5,393 +5,898 @@ body {
     text-transform: uppercase;
 }
 
-.blurBackground {
-    filter: blur(5px);
-    position: absolute;
-    z-index: -1;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-color: #f2c94c;
-    width: 150%;
-    top: -50px;
-    left: -10px;
-    height: 600px;
+@media only screen and (min-width: 930px) {
+
+    .bg {
+        height: 600px;
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        display: block;
+        overflow: hidden;
+    }
+
+    .blurBackground {
+        filter: blur(5px);
+        position: absolute;
+        display: block;
+        overflow: hidden;
+        z-index: -1;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: #f2c94c;
+        width: 110%;
+        top: -10px;
+        left: -10px;
+        height: 600px;
+    }
+
+    .welcomeGrid {
+        display: grid;
+        grid-template-rows: 1.5fr 2.5fr 2fr 2fr;
+    }
+
+    .welcomeEventGrid {
+        display: grid;
+        grid-template-columns: 5.5fr 4.5fr;
+    }
+
+    .eventGrid {
+        display: grid;
+        grid-template-columns: 5fr 5fr;
+    }
+
+    .topMerchGrid {
+        display: grid;
+        grid-template-columns: 3.3fr 3.3fr 3.3fr;
+    }
+
+    .ideaGrid {
+        display: grid;
+        grid-template-columns: 5fr 5fr;
+    }
+
+    .ideaBoxGrid {
+        display: grid;
+        grid-template-columns: 3fr 5fr;
+    }
+
+    .eventPicGrid {
+        display: grid;
+        grid-template-columns: 7fr 3fr;
+    }
+
+    .likeGrid {
+        display: grid;
+        grid-template-columns: 3fr 2fr 2fr 2fr;
+    }
+
+    .commentGrid {
+        display: grid;
+        grid-template-columns: 2fr 8fr;
+    }
+
+    .imgBorder {
+        border: 2px solid #000000;
+        border-radius: 15px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .picEvent {
+        border: 2px solid #000000;
+        border-radius: 5px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .imgProfileBorder {
+        border: 2px solid #f2c94c;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .imgProfilePos {
+        position: relative;
+        margin-top: 20px;
+        left: 30%;
+    }
+
+    .imgEventPos {
+        position: relative;
+        left: 7%;
+        top: 50px;
+    }
+
+    .titleEvent {
+        
+        text-align: center;
+        width: 600px;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+    }
+
+    .tEventPos {
+        position: relative;
+        margin-top: 50px;
+    }
+
+    .buttonStyle1 {
+        text-transform: uppercase;
+        background-color: #000000;
+        border: 2px solid #ffffff;
+        color: #f2c94c;
+        font-size: 20px;
+        letter-spacing: 0.2em;
+        font-weight: bold;
+    }
+
+    .buttonStyle2 {
+        text-transform: uppercase;
+        background-color: transparent;
+        border: transparent;
+        color: #000000;
+        font-size: 18px;
+        letter-spacing: 0.2em;
+        font-weight: medium;
+    }
+
+    .buttonStyle3 {
+        text-transform: uppercase;
+        background-color: #f2c94c;
+        border: 2px solid #000000;
+        color: #ffffff;
+        font-size: 18px;
+        letter-spacing: 0.2em;
+        font-weight: bold;
+    }
+
+    .buttonEventPos {
+        position: relative;
+        top: 25px;
+        left: 15%;
+        height: 50px;
+        width: 400px;
+    }
+
+    .center {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .buttonIdeaPos {
+        position: relative;
+        margin-top: 50px;
+        margin-left: 60px;
+        height: 50px;
+        width: 200px;
+    }
+
+    .buttonFilterPos {
+        position: relative;
+        margin-top: 50px;
+        margin-left: 75%;
+        height: 50px;
+        width: 200px;
+    }
+
+    .filterPos {
+        position: relative;
+        margin-left: 75%;
+        width: 300px;
+    }
+
+    .buttonNetwork {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin-top: 50px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: #c4c4c4;
+        border: transparent;
+        transition-duration: 0.4s;
+    }
+
+    .buttonNetwork:hover {
+        background-color: #f2c94c;
+    }
+
+    .buttonImg {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin-top: 50px;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: #c4c4c4;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .viewAllPos {
+        position: relative;
+        top: 20px;
+        left: 75%;
+        height: 50px;
+        width: 200px;
+    }
+
+    .textEvent {
+        position: relative;
+        text-align: center;
+        letter-spacing: 0.1em;
+        font-size: 20px;
+        font-weight: bold;
+        height: 80%;
+        max-width: 500px;
+        top: 50px;
+        right: 7%;
+    }
+
+    .title {
+        width: 1000px;
+        height: 75px;
+        font-size: 64px;
+        letter-spacing: 0.2em;
+        position: relative;
+        top: 40px;
+        left: 7%;
+        text-align: left;
+    }
+
+    .title2 {
+        width: 1000px;
+        height: 75px;
+        font-size: 42px;
+        letter-spacing: 0.2em;
+        position: relative;
+        top: 50px;
+        left: 14%;
+        text-align: left;
+    }
+
+    .titleEventPic {
+        width: 100%;
+        height: 75px;
+        font-size: 32px;
+        letter-spacing: 0.2em;
+        position: relative;
+        top: 40px;
+        text-align: center;
+    }
+
+    .imgPos {
+        display: block;
+        margin-top: 50px;
+    }
+
+    .nameProduct {
+        width: 300px;
+        height: 100px;
+        text-align: center;
+        padding-top: 40px;
+        margin:auto;
+        font-size: 18px;
+        letter-spacing: 0.1em;
+    }
+
+    .ideaBox {
+        display: block;
+        width: 700px;
+        height: 400px;
+        background-color: #c4c4c4;
+        border: 2px solid #000000;
+        overflow: hidden;
+    }
+
+    .ideaBoxText {
+        text-transform: lowercase;
+        position: relative;
+        margin-top: 20px;
+        width: 90%;
+        height: 300px;
+        padding: 5px;
+        font-size: 18px;
+        text-align: center;
+        background-color: #ffffffce;
+        border: 1px solid #f2c94c;
+    }
+
+    .ideaBoxName {
+        text-transform: capitalize;
+        position: relative;
+        margin-top: 10px;
+        left: 10%;
+        width: 200px;
+        height: 20px;
+        padding: 5px;
+        text-align: center;
+        background-color: #ffffffce;
+        border: 1px solid #f2c94c;
+    }
+
+    .eventDesc {
+        text-transform: lowercase;
+        position: relative;
+        text-align: center;
+        margin-top: 50px;
+        background-color: #c4c4c4;
+        padding: 50px;
+        border: 1px solid #000000;
+        height: 400px;
+        width: 500px;
+    }
+    .eventDescPic {
+        text-transform: lowercase;
+        position: relative;
+        text-align: center;
+        margin-top: 50px;
+        background-color: #c4c4c4;
+        padding: 50px;
+        border: 1px solid #000000;
+        height: 150px;
+        width: 80%;
+    }
+
+    .picDesc {
+        text-transform: lowercase;
+        position: relative;
+        text-align: center;
+        margin-top: 25px;
+        background-color: #f2c84cc7;
+        padding: 20px;
+        border: 1px solid #000000;
+        height: 150px;
+        width: 80%;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .vector {
+        height: 0;
+        margin-top: 75px;
+        margin-bottom: 25px;
+        border: 3px solid #000000;
+        width: 90%;
+    }
+
+    .post {
+        position: relative;
+        margin-top: 10px;
+        margin-left: 25%;
+        font-size: 12px;
+        width: 200px;
+    }
+
+    .likePos {
+        height: 50px;
+        font-size: 18px;
+        width: 80%;
+        padding: auto;
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    .comment {
+        padding: 25px 10px 10px 10px;
+        width: 80%;
+        height: 75px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .commentButton {
+        margin-top: 40px;
+        margin-left: 75px;
+        font-size: 12px;
+        font-weight: bold;
+        width: 300px;
+    }
+
+    /* -------DROPDOWN CLASS------- */
+
+    .dropdown {
+        cursor: pointer;
+        transition-duration: 0.8s;
+    }
+
+    .dropdown:hover, .dropdown:focus {
+        background-color: #dfb846;
+    }
+
+    .drop-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 200px;
+        overflow: auto;
+        z-index: 1;
+    }
+
+    .drop-content a {
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        color: #000000;
+    }
+
+    .drop a:hover {
+        background-color: #ddd;
+    }
+
+    .show {
+        display: block;
+        transition-duration: 0.5s;
+    }
 }
 
-.welcomeGrid {
-    display: grid;
-    grid-template-rows: 1.5fr 2.5fr 2fr 2fr;
-}
+@media only screen and (max-width: 930px) {
 
-.welcomeEventGrid {
-    display: grid;
-    grid-template-columns: 5.5fr 4.5fr;
-    
-}
+    img#eventPic {
+        height: 75px; 
+        width: 150px;
+    }
 
-.eventGrid {
-    display: grid;
-    grid-template-columns: 5fr 5fr;
-}
+    .picEvent {
+        height: 150px;
+        width: 300px;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
 
-.topMerchGrid {
-    display: grid;
-    grid-template-columns: 3.3fr 3.3fr 3.3fr;
-}
+    .bg {
+        height: 235px;
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        display: block;
+        overflow: hidden;
+    }
 
-.ideaGrid {
-    display: grid;
-    grid-template-columns: 5fr 5fr;
-}
+    .blurBackground {
+        filter: blur(5px);
+        position: absolute;
+        display: block;
+        overflow: hidden;
+        z-index: -1;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: #f2c94c;
+        width: 110%;
+        top: -10px;
+        left: -10px;
+        height: 600px;
+    }
 
-.ideaBoxGrid {
-    display: grid;
-    grid-template-columns: 3fr 5fr;
-}
+    .welcomeGrid {
+        display: grid;
+        grid-template-rows: 1.5fr 2.5fr 2fr 2fr;
+    }
 
-.eventPicGrid {
-    display: grid;
-    grid-template-columns: 7fr 3fr;
-}
+    .welcomeEventGrid {
+        display: grid;
+        grid-template-columns: 5.5fr 4.5fr;
+    }
 
-.likeGrid {
-    display: grid;
-    grid-template-columns: 3fr 2fr 2fr 2fr;
-}
+    .eventGrid {
+        display: grid;
+        grid-template-rows: 5fr 5fr;
+    }
 
-.commentGrid {
-    display: grid;
-    grid-template-columns: 2fr 8fr;
-}
+    .topMerchGrid {
+        display: grid;
+        grid-template-columns: 3.3fr 3.3fr 3.3fr;
+    }
 
-.imgBorder {
-    border: 2px solid #000000;
-    border-radius: 15px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
+    .ideaGrid {
+        display: grid;
+        grid-template-columns: 5fr 5fr;
+    }
 
-.imgProfileBorder {
-    border: 2px solid #f2c94c;
-    border-radius: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
+    .ideaBoxGrid {
+        display: grid;
+        grid-template-columns: 3fr 5fr;
+    }
 
-.imgProfilePos {
-    position: relative;
-    margin-top: 20px;
-    left: 30%;
-}
+    .eventPicGrid {
+        display: grid;
+        grid-template-columns: 7fr 3fr;
+    }
 
-.imgEventPos {
-    position: relative;
-    left: 7%;
-    top: 50px;
-}
+    .likeGrid {
+        display: grid;
+        grid-template-columns: 3fr 2fr 2fr 2fr;
+    }
 
-.titleEvent {
-    
-    text-align: center;
-    width: 600px;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-}
+    .commentGrid {
+        display: grid;
+        grid-template-columns: 1fr 8fr;
+    }
+    .commentGridpost {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
 
-.tEventPos {
-    position: relative;
-    margin-top: 50px;
-}
+    .imgBorder {
+        border: 2px solid #000000;
+        height: 150px;
+        width: 100px;
+        border-radius: 5px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
 
-.buttonStyle1 {
-    text-transform: uppercase;
-    background-color: #000000;
-    border: 2px solid #ffffff;
-    color: #f2c94c;
-    font-size: 20px;
-    letter-spacing: 0.2em;
-    font-weight: bold;
-}
+    .imgProfileBorder {
+        border: 2px solid #f2c94c;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
 
-.buttonStyle2 {
-    text-transform: uppercase;
-    background-color: #ffffff;
-    border: 2px solid #ffffff;
-    color: #000000;
-    font-size: 18px;
-    letter-spacing: 0.2em;
-    font-weight: medium;
-}
+    .imgProfilePos {
+        position: relative;
+        margin-top: 15px;
+        left: 30%;
+    }
 
-.buttonStyle3 {
-    text-transform: uppercase;
-    background-color: #f2c94c;
-    border: 2px solid #000000;
-    color: #ffffff;
-    font-size: 18px;
-    letter-spacing: 0.2em;
-    font-weight: bold;
-}
+    .imgEventPos {
+        position: relative;
+        left: 7%;
+        top: 20px;
+    }
 
-.buttonEventPos {
-    position: relative;
-    top: 25px;
-    left: 15%;
-    height: 50px;
-    width: 400px;
-}
+    .titleEvent {
+        
+        text-align: center;
+        width: 150px;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+    }
 
-.center {
-    margin-right: auto;
-    margin-left: auto;
-}
+    .tEventPos {
+        position: relative;
+        margin-top: 20px;
+    }
 
-.buttonIdeaPos {
-    position: relative;
-    margin-top: 50px;
-    margin-left: 60px;
-    height: 50px;
-    width: 200px;
-}
+    .buttonStyle1 {
+        text-transform: uppercase;
+        background-color: #000000;
+        border: 1px solid #ffffff;
+        color: #f2c94c;
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        font-weight: bold;
+    }
 
-.buttonFilterPos {
-    position: relative;
-    margin-top: 50px;
-    margin-left: 75%;
-    height: 50px;
-    width: 200px;
-}
+    .buttonStyle2 {
+        text-transform: uppercase;
+        background-color:transparent;
+        border: transparent;
+        color: #000000;
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        font-weight: medium;
+    }
 
-.filterPos {
-    position: relative;
-    margin-left: 75%;
-    width: 300px;
-}
+    .buttonStyle3 {
+        text-transform: uppercase;
+        background-color: #f2c94c;
+        border: 1px solid #000000;
+        color: #ffffff;
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        font-weight: bold;
+    }
 
-.buttonNetwork {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    margin-top: 50px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-color: #c4c4c4;
-    border: transparent;
-    transition-duration: 0.4s;
-}
+    .buttonEventPos {
+        position: relative;
+        top: 10px;
+        left: 20%;
+        height: 30px;
+        width: 150px;
+    }
 
-.buttonNetwork:hover {
-    background-color: #f2c94c;
-}
+    .center {
+        margin-right: auto;
+        margin-left: auto;
+    }
 
-.viewAllPos {
-    position: relative;
-    top: 20px;
-    left: 75%;
-    height: 50px;
-    width: 400px;
-}
+    .buttonIdeaPos {
+        position: relative;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 30px;
+        width: 120px;
+    }
 
-.textEvent {
-    position: relative;
-    margin: 10px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    font-size: 20px;
-    font-weight: bold;
-    height: 90%;
-    top: 50px;
-    right: 7%;
-}
+    .buttonFilterPos {
+        position: relative;
+        margin-top: 20px;
+        margin-left: 60%;
+        height: 20px;
+        width: 100px;
+    }
 
-.title {
-    width: 1000px;
-    height: 75px;
-    font-size: 64px;
-    letter-spacing: 0.2em;
-    position: relative;
-    top: 40px;
-    left: 7%;
-    text-align: left;
-}
+    .filterPos {
+        position: relative;
+        margin-left: 60%;
+        width: 100px;
+    }
 
-.titleEventPic {
-    width: 100%;
-    height: 75px;
-    font-size: 32px;
-    letter-spacing: 0.2em;
-    position: relative;
-    top: 40px;
-    text-align: center;
-}
+    .buttonNetwork {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin-top: 50px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: #c4c4c4;
+        border: transparent;
+        transition-duration: 0.4s;
+    }
 
-.imgPos {
-    display: block;
-    margin-top: 50px;
-}
+    .buttonNetwork:hover {
+        background-color: #f2c94c;
+    }
 
-.nameProduct {
-    width: 300px;
-    height: 100px;
-    text-align: center;
-    padding-top: 40px;
-    margin:auto;
-    font-size: 18px;
-    letter-spacing: 0.1em;
-}
+    .buttonImg {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin-top: 50px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: #c4c4c4;
+        border: transparent;
+        transition-duration: 0.4s;
+    }
 
-.ideaBox {
-    display: block;
-    width: 700px;
-    height: 400px;
-    background-color: #c4c4c4;
-    border: 2px solid #000000;
-    overflow: hidden;
-}
+    .viewAllPos {
+        position: relative;
+        top: 5px;
+        left: 60%;
+        height: 50px;
+        width: 100px;
+    }
 
-.ideaBoxText {
-    text-transform: lowercase;
-    position: relative;
-    margin-top: 20px;
-    width: 90%;
-    height: 300px;
-    padding: 5px;
-    font-size: 18px;
-    text-align: center;
-    background-color: #ffffffce;
-    border: 1px solid #f2c94c;
-}
+    .textEvent {
+        position: relative;
+        text-align: center;
+        letter-spacing: 0.1em;
+        font-size: 9px;
+        font-weight: bold;
+        height: 80%;
+        max-width: 160px;
+        top: 50px;
+        right: 7%;
+    }
 
-.ideaBoxName {
-    text-transform: capitalize;
-    position: relative;
-    margin-top: 10px;
-    left: 10%;
-    width: 200px;
-    height: 20px;
-    padding: 5px;
-    text-align: center;
-    background-color: #ffffffce;
-    border: 1px solid #f2c94c;
-}
+    .title {
+        width: 200px;
+        height: 30px;
+        font-size: 20px;
+        letter-spacing: 0.2em;
+        position: relative;
+        top: 10px;
+        left: 7%;
+        text-align: left;
+    }
 
-.eventDesc {
-    text-transform: lowercase;
-    position: relative;
-    text-align: center;
-    margin-top: 50px;
-    background-color: #c4c4c4;
-    padding: 50px;
-    border: 1px solid #000000;
-    height: 400px;
-    width: 500px;
-}
-.eventDescPic {
-    text-transform: lowercase;
-    position: relative;
-    text-align: center;
-    margin-top: 50px;
-    background-color: #c4c4c4;
-    padding: 50px;
-    border: 1px solid #000000;
-    height: 150px;
-    width: 80%;
-}
+    .titleEventPic {
+        width: 90%;
+        height: 75px;
+        font-size: 15px;
+        letter-spacing: 0.2em;
+        position: relative;
+        top: 40px;
+        text-align: center;
+    }
 
-.picDesc {
-    text-transform: lowercase;
-    position: relative;
-    text-align: center;
-    margin-top: 25px;
-    background-color: #f2c84cc7;
-    padding: 20px;
-    border: 1px solid #000000;
-    height: 150px;
-    width: 80%;
-}
+    .imgPos {
+        display: block;
+        margin-top: 20px;
+    }
 
-.hide {
-    display: none;
-}
+    .nameProduct {
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        padding-top: 10px;
+        margin:auto;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+    }
 
-.vector {
-    height: 0;
-    margin-top: 75px;
-    margin-bottom: 25px;
-    border: 3px solid #000000;
-    width: 90%;
-}
+    .ideaBox {
+        display: block;
+        width: 300px;
+        height: 160px;
+        background-color: #c4c4c4;
+        border: 2px solid #000000;
+        overflow: hidden;
+    }
 
-.post {
-    position: relative;
-    margin-top: 10px;
-    margin-left: 25%;
-    font-size: 12px;
-    width: 200px;
-}
+    .ideaBoxText {
+        text-transform: lowercase;
+        position: relative;
+        margin-top: 10px;
+        width: 90%;
+        height: 120px;
+        padding: 5px;
+        font-size: 9px;
+        text-align: center;
+        background-color: #ffffffce;
+        border: 1px solid #f2c94c;
+    }
 
-.likePos {
-    height: 50px;
-    font-size: 18px;
-    width: 80%;
-    padding: auto;
-    text-align: center;
-    margin-top: 5px;
-}
+    .ideaBoxName {
+        text-transform: capitalize;
+        position: relative;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 9px;
+        width: 100px;
+        height: 15px;
+        padding: 5px;
+        text-align: center;
+        background-color: #ffffffce;
+        border: 1px solid #f2c94c;
+    }
 
-.comment {
-    padding: 25px 10px 10px 10px;
-    width: 80%;
-    height: 75px;
-    font-size: 14px;
-    text-align: center;
-}
+    .ideaBoxName2 {
+        text-transform: capitalize;
+        position: relative;
+        margin-top: 10px;
+        font-size: 9px;
+        width: 75px;
+        height: 15px;
+        padding: 5px;
+        text-align: center;
+        background-color: #ffffffce;
+        border: 1px solid #f2c94c;
+    }
 
-.commentButton {
-    margin-top: 40px;
-    margin-left: 75px;
-    font-size: 12px;
-    font-weight: bold;
-    width: 300px;
-}
+    .eventDesc {
+        text-transform: lowercase;
+        position: relative;
+        text-align: center;
+        margin-top: 30px;
+        background-color: #c4c4c4;
+        padding: 20px;
+        border: 1px solid #000000;
+        height: 150px;
+        width: 300px;
+    }
+    .eventDescPic {
+        text-transform: lowercase;
+        position: relative;
+        text-align: center;
+        margin-top: 20px;
+        background-color: #c4c4c4;
+        padding: 20px;
+        border: 1px solid #000000;
+        height: 150px;
+        width: 300px;
+    }
 
-/* -------DROPDOWN CLASS------- */
+    .picDesc {
+        text-transform: lowercase;
+        position: relative;
+        text-align: center;
+        margin-top: 25px;
+        font-size: 9px;
+        background-color: #f2c84cc7;
+        padding: 10px;
+        border: 1px solid #000000;
+        height: 75px;
+        width: 200px;
+    }
 
-.dropdown {
-    cursor: pointer;
-    transition-duration: 0.8s;
-}
+    .hide {
+        display: none;
+    }
 
-.dropdown:hover, .dropdown:focus {
-    background-color: #dfb846;
-}
+    .vector {
+        height: 0;
+        margin-top: 20px;
+        margin-bottom: 25px;
+        border: 3px solid #000000;
+        width: 90%;
+    }
 
-.drop-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 200px;
-    overflow: auto;
-    z-index: 1;
-}
+    .post {
+        position: relative;
+        margin-top: 10px;
+        margin-left: 10%;
+        font-size: 7px;
+        width: 100px;
+    }
 
-.drop-content a {
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    color: #000000;
-}
+    .likePos {
+        height: 20px;
+        font-size: 8px;
+        width: 90%;
+        padding: auto;
+        text-align: center;
+        margin-top: 5px;
+    }
 
-.drop a:hover {
-    background-color: #ddd;
-}
+    .comment {
+        padding: 10px 10px 10px 10px;
+        width: 90%;
+        height: 75px;
+        font-size: 9px;
+        text-align: center;
+    }
 
-.show {
-    display: block;
-    transition-duration: 0.5s;
+    .commentButton {
+        margin-top: 10px;
+        margin-left: 10px;
+        font-size: 9px;
+        font-weight: bold;
+        width: 210px;
+    }
+
+    /* -------DROPDOWN CLASS------- */
+
+    .dropdown {
+        cursor: pointer;
+        transition-duration: 0.8s;
+    }
+
+    .dropdown:hover, .dropdown:focus {
+        background-color: #dfb846;
+    }
+
+    .drop-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 100px;
+        font-size: 9px;
+        overflow: auto;
+        z-index: 1;
+    }
+
+    .drop-content a {
+        padding: 7px 6px;
+        text-decoration: none;
+        display: block;
+        color: #000000;
+    }
+
+    .drop a:hover {
+        background-color: #ddd;
+    }
+
+    .show {
+        display: block;
+        transition-duration: 0.5s;
+    }
 }

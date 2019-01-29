@@ -16,10 +16,10 @@ class CreateCommentTable extends Migration
         Schema::create('comment', function (Blueprint $table) {
             $table->increments('id_comment');
             $table->char('comment_body', 255);
-            $table->char('comment_date', 16);
             $table->unsignedInteger('id_picture_event');
             $table->unsignedInteger('id_user');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

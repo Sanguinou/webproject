@@ -23,7 +23,8 @@ class CreateEventTable extends Migration
             $table->unsignedInteger('id_user_create');
             $table->unsignedInteger('id_status_event');
             $table->unsignedInteger('id_user_validate')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

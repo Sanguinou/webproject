@@ -15,8 +15,9 @@ class CreateStatusUserTable extends Migration
     {
         Schema::create('status_user', function (Blueprint $table) {
             $table->increments('id_status_user');
-            $table->char('status_user_name', 16);
-            $table->timestamps();
+            $table->char('status_user_name', 16); 
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
 
         DB::table('status_user')->insert([
