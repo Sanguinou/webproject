@@ -17,6 +17,7 @@ class CreateProductTable extends Migration
             $table->increments('id_product');
             $table->char('product_name', 64);
             $table->char('product_desc', 255);
+            $table->char('product_pic', 32);
             $table->integer('product_price');
             $table->integer('stock');
             $table->unsignedInteger('id_category');

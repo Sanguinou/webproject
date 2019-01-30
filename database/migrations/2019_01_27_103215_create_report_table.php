@@ -17,7 +17,8 @@ class CreateReportTable extends Migration
             $table->unsignedInteger('id_user');
             $table->unsignedInteger('id_picture_event');
             $table->unsignedInteger('id_comment');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

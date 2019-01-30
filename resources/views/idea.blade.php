@@ -16,36 +16,23 @@
 <body>
     @section('content')
     <h1 class="title">boite à idée</h1>
-    <div class="ideaBox imgPos center">
-        <div class="ideaBoxGrid">
-            <div>
-                <img class="imgProfileBorder imgProfilePos " style="background-image: url({{ asset('image/LP.png') }}" width="150" height="150">
-                <div class="ideaBoxName center" width="200" height="75"> <b>Logan Paul</b> </div>
-                <button class="buttonStyle1 buttonIdeaPos center">vote</button>
-            </div>
-            <div class="ideaBoxText center">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi reiciendis, 
-                quis dicta quas sit reprehenderit. Dolorum, maiores deserunt in, unde dicta ullam 
-                voluptatum labore id debitis minima nulla numquam facilis.
-            </div>
-        </div>
-    </div>
-    <div class="vector center"></div>
-    <div class="ideaBox imgPos center">
-        <div class="ideaBoxGrid">
-            <div>
-                <img class="imgProfileBorder imgProfilePos " style="background-image: url({{ asset('image/LP.png') }}" width="150" height="150">
-                <div class="ideaBoxName center" width="200" height="75"> <b>Logan Paul</b> </div>
-                <button class="buttonStyle1 buttonIdeaPos center">vote</button>
-            </div>
-            <div class="ideaBoxText center">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi reiciendis, 
-                quis dicta quas sit reprehenderit. Dolorum, maiores deserunt in, unde dicta ullam 
-                voluptatum labore id debitis minima nulla numquam facilis.
-            </div>
-        </div>
-    </div>
-    <div class="vector center"></div>
+    @foreach($ideas as $idea)
+            @if($idea->id_status_event == 1)
+                <div class="ideaBox imgPos center">
+                    <div class="ideaBoxGrid">
+                        <div>
+                            <img class="imgProfileBorder imgProfilePos " src="image/{{$idea->profile_pic}}" width="150" height="150">
+                            <div class="ideaBoxName center" width="200" height="75"> <b>{{$idea->first_name}} {{$idea->last_name}}</b> </div>
+                            <button class="buttonStyle1 buttonIdeaPos center">Vote</button>
+                        </div>
+                        <div class="ideaBoxText center">
+                            {{$idea->event_name}} <br/> {{$idea->event_body}}
+                        </div>
+                    </div>
+                </div>
+                <div class="vector center"></div>
+            @endif
+        @endforeach
     @endsection
 </body>
 

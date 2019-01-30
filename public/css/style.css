@@ -5,7 +5,7 @@ body {
     text-transform: uppercase;
 }
 
-<<<<<<< HEAD
+
 .blurBackground {
     filter: blur(5px);
     position: absolute;
@@ -395,7 +395,7 @@ body {
 .show {
     display: block;
     transition-duration: 0.5s;
-=======
+
 @media only screen and (min-width: 930px) {
 
     .bg {
@@ -413,9 +413,7 @@ body {
         display: block;
         overflow: hidden;
         z-index: -1;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover;
         background-color: #f2c94c;
         width: 110%;
         top: -10px;
@@ -471,25 +469,19 @@ body {
     .imgBorder {
         border: 2px solid #000000;
         border-radius: 15px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover;
     }
 
     .picEvent {
         border: 2px solid #000000;
         border-radius: 5px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover;
     }
 
     .imgProfileBorder {
         border: 2px solid #f2c94c;
         border-radius: 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover;
     }
 
     .imgProfilePos {
@@ -846,9 +838,7 @@ body {
         width: 300px;
         border: 2px solid #000000;
         border-radius: 5px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover;
     }
 
     .bg {
@@ -866,9 +856,7 @@ body {
         display: block;
         overflow: hidden;
         z-index: -1;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover;
         background-color: #f2c94c;
         width: 110%;
         top: -10px;
@@ -930,9 +918,7 @@ body {
         height: 150px;
         width: 100px;
         border-radius: 5px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover;
     }
 
     .imgProfileBorder {
@@ -940,9 +926,7 @@ body {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover;
     }
 
     .imgProfilePos {
@@ -1290,5 +1274,5 @@ body {
         display: block;
         transition-duration: 0.5s;
     }
->>>>>>> simon
-}
+
+}}

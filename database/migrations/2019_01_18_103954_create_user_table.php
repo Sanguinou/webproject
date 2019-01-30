@@ -20,10 +20,7 @@ class CreateUserTable extends Migration
             $table->char('email', 64)->unique();
             $table->char('password',64);
             $table->char('profile_pic', 32);
-<<<<<<< HEAD
             $table->char('token', 10)->unique();
-=======
->>>>>>> simon
             $table->unsignedInteger('id_status_user');
             $table->unsignedInteger('id_school');
             $table->timestamp('created_at')->useCurrent();

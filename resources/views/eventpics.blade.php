@@ -78,7 +78,7 @@ if(isset($_SESSION['decoded'])){
     <!-- main event presentation -->
     <h1 class="titleEventPic Center"><?php echo $GLOBALS['event'][0]->event_name ;?></h1>
     <div>
-        <img class="imgBorder imgPos center" style="background-image: url('http://localhost:8000/image/<?php echo $GLOBALS['event'][0]->picture_presentation_event;?>')" width="1000" height="600">
+        <img class="picEvent imgPos center" style="background-image: url('http://localhost:8000/image/<?php echo $GLOBALS['event'][0]->picture_presentation_event;?>')" width="1000" height="600">
         <div class="eventDescPic center">
         <?php echo $GLOBALS['event'][0]->event_body ;?>
 
@@ -165,7 +165,6 @@ if(isset($_SESSION['decoded'])){
         </div>
         <div class="vector center"></div>
     </div>
-
     @endsection
 </body>
 

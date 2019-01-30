@@ -18,13 +18,11 @@ session_start();
     @endsection
 
 <body>
-<<<<<<< HEAD
-<<<<<<< HEAD
+    @section('content')
     <h1 class="title">Boutique</h1> 
+    <h2 class="title2">Top produits :</h2>
     <div class="topMerchGrid">
         <div>
-            <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="500">
-=======
     @section('content')
     <h1 class="title">Boutique</h1> 
     <h2 class="title2">Top produits :</h2>
@@ -33,38 +31,38 @@ session_start();
             <a href="#">
                 <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="500">
             </a>
->>>>>>> simon
+            <a href="#">
+                <img class="imgBorder imgPos center" src="{{ asset('image/arnold.jpg') }}" width="300" height="500">
+            </a>
             <p class="nameProduct" width="300" height="100">
                 Black tuxedo / cool wear - <b>1.000 €</b>
             </p>
         </div>
         <div>
-<<<<<<< HEAD
             <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gaelz.jpg') }}" width="300" height="500">
-=======
             <a href="#">
                 <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gaelz.jpg') }}" width="300" height="500">
             </a>
->>>>>>> simon
+            <a href="#">
+                <img class="imgBorder imgPos center" src="{{ asset('image/gaelz.jpg') }}" width="300" height="500">
+            </a>
             <p class="nameProduct" width="300" height="100">
                 Young and Dynamic vest - <b>10 €</b>
             </p>
         </div>
         <div>
-<<<<<<< HEAD
             <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/shaq.jpg') }}" width="300" height="500">
-=======
             <a href="#">
                 <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/shaq.jpg') }}" width="300" height="500">
             </a>
->>>>>>> simon
+            <a href="#">
+                <img class="imgBorder imgPos center" src="{{ asset('image/shaq.jpg') }}" width="300" height="500">
+            </a>
             <p class="nameProduct" width="300" height="100">
                 Shaq'fu pro vest / 100% Sprite cramberry - <b>69.420 €</b>
             </p>
         </div>
     </div>
-<<<<<<< HEAD
-=======
     <?php
     $url = "http://localhost:3000/api/login";
     if (isset($url) && isset($_SESSION['token'])){
@@ -88,8 +86,6 @@ session_start();
             };
 
     ?>
-
-=======
     <h2 class="title2">Produits :</h2>
     <button id=filterEvent class="buttonStyle3 buttonFilterPos dropdown" onclick="Drop('dropFilterEvent')">Filtre</button>
         <div id="dropFilterEvent" class="drop-content filterPos">
@@ -156,7 +152,44 @@ session_start();
         </div>
     </div>
     @endsection
->>>>>>> simon
+        </div> 
+        <div id=apparels class="hide show">
+            <div class="titleEvent tEventPos">vêtements :</div>
+                <div class="topMerchGrid">
+                @foreach ($products as $product)
+                    @if ($product->id_category == 1)
+                            <div>
+                            <a href="#">
+                                <img class="imgBorder imgPos center" src="image/{{$product->product_pic}}" width="300" height="300">
+                            </a>
+                            <p class="nameProduct" width="300" height="100">
+                                {{ $product->product_name }} - <b>{{ $product->product_price }} €</b>
+                            </p>
+                        </div>
+                    @endif
+                @endforeach
+                </div>
+            </div>
+        </div>
+        <div id=accessories class="hide show">
+            <div class="titleEvent tEventPos">accessoires :</div>
+                <div class="topMerchGrid">
+                @foreach ($products as $product)
+                    @if ($product->id_category == 2)
+                        <div>
+                            <a href="#">
+                                <img class="imgBorder imgPos center" src="image/{{$product->product_pic}}" width="300" height="300">
+                            </a>
+                            <p class="nameProduct" width="300" height="100">
+                                {{ $product->product_name }} - <b>{{ $product->product_price }} €</b>
+                            </p>
+                        </div>
+                    @endif
+                @endforeach
+                </div>
+            </div>
+        </div>
+    @endsection
 </body>
 
     @section('footer')

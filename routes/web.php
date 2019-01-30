@@ -12,12 +12,14 @@
 */
 
 Route::get('/', function () {
-    $products = DB::table('product')->get();
-    return view('welcome');
+    $users_ideas = DB::table('user')->join('event', 'event.id_user_create', '=', 'user.id_user')->paginate(4);
+    $events = DB::table('event')->get();
+    return view('welcome', compact('users_ideas', 'events'));
 });
 
 Route::get('event', function () {
-    return view('event');
+    $events = DB::table('event')->get();
+    return view('event', compact('events'));
 });
 
 
@@ -35,7 +37,25 @@ Route::post('event/{id}', function ($id) {
 });
 
 Route::get('shop', function () {
-    return view('shop');
+    $products = DB::table('product')->get();
+    return view('shop', compact('products'));
+});
+
+Route::get('ideabox', function () {
+    $ideas = DB::table('user')->join('event', 'event.id_user_create', '=', 'user.id_user')->paginate(4);
+    return view('idea', compact('ideas'));
+});
+
+Route::get('profile', function () {
+    return view('profile');
+});
+
+Route::get('item', function () {
+    return view('item');
+});
+
+Route::get('cart', function () {
+    return view('cart');
 });
 Route::get('login', function () {
     return view('login');

@@ -39,7 +39,7 @@ $url_event = "http://localhost:3000/api/events";
     <meta charset="utf-8" />
     <title>BDE Cesi - Acceuil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="{{  asset('css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/style.css') }}" />
 </head>
 @section('navbar')
         @parent
@@ -49,7 +49,11 @@ $url_event = "http://localhost:3000/api/events";
 
     <div class="welcomeGrid">
         <div>
-            <div class="blurBackground" style="background-image: url({{ asset('image/bgevent.jpg') }})"></div>
+        @foreach($events as $event)
+            @if ($event->id_status_event == 2)
+            <div class="bg">
+                <img class="blurBackground" src="image/{{$event->picture_presentation_event}}">
+            </div>
             <div class="welcomeEventGrid">
                 <div>
                     <img class="imgBorder imgPos center" src="http://localhost:8000/image/<?php echo $GLOBALS['events'][0]->picture_presentation_event;?>" width="600" height="300">
@@ -69,6 +73,8 @@ $url_event = "http://localhost:3000/api/events";
                 </div>
                 <button class="buttonStyle2 viewAllPos" onclick="location.href = 'http://127.0.0.1:8000/event';"> Voir Tout ></button>
             </div>
+            @endif
+        @endforeach
         </div>
         <div>
             <h1 class="title">Boutique</h1>
@@ -84,7 +90,7 @@ $url_event = "http://localhost:3000/api/events";
                 </div>
                 <div>
                     <a href="#">
-                        <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gaelz.jpg') }}" width="300" height="500">
+                        <img class="imgBorder imgPos center" src="{{ asset('image/gaelz.jpg') }}" width="300" height="500">
                     </a>
                     <div class="nameProduct" width="300" height="100">
                         Young and Dynamic vest - <b>10 €</b>
@@ -92,7 +98,7 @@ $url_event = "http://localhost:3000/api/events";
                 </div>
                 <div>
                     <a href="#">
-                        <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/shaq.jpg') }}" width="300" height="500">
+                        <img class="imgBorder imgPos center" src="{{ asset('image/shaq.jpg') }}" width="300" height="500">
                     </a>
                     <div class="nameProduct" width="300" height="100">
                         Shaq'fu pro vest / 100% Sprite cramberry - <b>69.420 €</b>
@@ -116,6 +122,8 @@ $url_event = "http://localhost:3000/api/events";
                         voluptatum labore id debitis minima nulla numquam facilis.
                     </div>
                 </div>
+                @endif
+            @endforeach
             </div>
         </div> 
         <div>
