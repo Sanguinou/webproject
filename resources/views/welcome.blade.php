@@ -97,44 +97,28 @@ $url_event = "http://localhost:3000/api/events";
                             $url_pic_product='http://localhost:3000/api/pictures_product/'.$GLOBALS['products'][$i]->id_product;
                                 if (isset($url_product)){
                                     $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
-                                    $resp = $myClient -> request('GET',$url_product,['verify'=>false]);
+                                    $resp = $myClient -> request('GET',$url_pic_product,['verify'=>false]);
                                     if ($resp -> getStatusCode() == 200){
                                         $body = $resp -> getBody();
                                         $pic_products = json_decode($body);
-                                        foreach($pic_products as $pic_products){
-                                          echo '
-                                            <div>
-                                                <a href="#">
-                                                <img class="imgBorder imgPos center" src="http://127.0.0.1/image/'.$pic_product->picture_name.'" width="300" height="500">
-                                                </a>
-                                                <div class="nameProduct" width="300" height="100">
-                                                '.$GLOBALS['products'][$i]->product_name.'<b>'.$GLOBALS['products'][$i]->product_price.' €</b>
-                                                </div>
-                                            </div>';  
+                                        if(isset($pic_products)){
+                                            foreach($pic_products as $pic_products){
+                                                echo '
+                                                <div>
+                                                    <a href="http://127.0.0.1/product/'.$GLOBALS['products'][$i]->id_product.'">
+                                                        <img class="imgBorder imgPos center" src="http://127.0.0.1:8000/image/'.$pic_products->picture_product_name.'" width="300" height="500">
+                                                    </a>
+                                                    <div class="nameProduct" width="300" height="100">
+                                                        '.$GLOBALS['products'][$i]->product_name.'<b>'.$GLOBALS['products'][$i]->product_price.' €</b>
+                                                    </div>
+                                                </div>';  
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
-       
-
-                '};?>
-
-                    <a href="#">
-                        <img class="imgBorder imgPos center" src="{{ asset('image/gaelz.jpg') }}" width="300" height="500">
-                    </a>
-                    <div class="nameProduct" width="300" height="100">
-                        Young and Dynamic vest - <b>10 €</b>
-                    </div>
-                </div>
-                <div>
-                    <a href="#">
-                        <img class="imgBorder imgPos center" src="{{ asset('image/shaq.jpg') }}" width="300" height="500">
-                    </a>
-                    <div class="nameProduct" width="300" height="100">
-                        Shaq'fu pro vest / 100% Sprite cramberry - <b>69.420 €</b>
-                    </div>
-                </div>
+                        ?>
             </div>
         </div>
         <div>

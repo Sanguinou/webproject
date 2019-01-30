@@ -58,8 +58,12 @@ Route::get('profile', function () {
     return view('profile');
 });
 
-Route::get('item', function () {
-    return view('item');
+Route::get('product/{id}', function ($id) {
+    return view('product',$id_product = ["id_product"=>$id]);
+});
+
+Route::post('product/{id}', function ($id) {
+    return view('product',$id_product = ["id_product"=>$id]);
 });
 
 Route::get('cart', function () {
