@@ -28,7 +28,7 @@ if (isset($urlLog) && isset($_POST['password']) && !isset($_POST['first_name']))
     try {
      $resp =  $myClient -> request('POST',$urlLog,[
          'form_params'=> [
-             'password' => $_POST['password'],
+             'password' => hash('ripemd160',$_POST['password']),
              'email' => $_POST['email']
          ]
          ]);} 
@@ -45,14 +45,14 @@ if (isset($urlLog) && isset($_POST['password']) && !isset($_POST['first_name']))
          exit();
         }
     }
-}else if (isset($url) && isset($_POST['password']) && isset($_POST['first_name'])){
+}else if (isset($urlReg) && isset($_POST['password']) && isset($_POST['first_name'])){
      
         $myClient = new GuzzleHttp\Client([
             'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']]);
        try {
         $resp =  $myClient -> request('POST',$urlReg,[
             'form_params'=> [
-                'password' => $_POST['password'],
+                'password' => hash('ripemd160',$_POST['password']),
                 'email' => $_POST['email'],
                 'first_name' => $_POST['first_name'],
                 'last_name' => $_POST['last_name'],

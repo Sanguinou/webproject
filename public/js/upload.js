@@ -1,4 +1,4 @@
-const url = '../../js/process.php';
+const url = 'http://127.0.0.1:8000/js/process.php';
 const form = document.querySelector('form');
 
 form.addEventListener('submit', e => {

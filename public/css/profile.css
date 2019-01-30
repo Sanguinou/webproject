@@ -41,11 +41,12 @@ input[type="submit"]{
 }
 
 #profil_information{
+    position: absolute;;
     width: 675px;
     height: 600px;
-    left: 675;
-    top: 250;
-    background: rgb(207, 207, 207);
+    left: 650px;
+    top: 100px;
+    background: #ffffff;
     float: right;
 }
 

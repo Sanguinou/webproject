@@ -29,7 +29,7 @@ use GuzzleHttp\Exception\ClientException;
         try {
          $resp =  $myClient -> request('POST',$urlLog,[
              'form_params'=> [
-                 'password' => $_POST['password'],
+                 'password' => hash('ripemd160',$_POST['password']),
                  'email' => $_POST['email']
              ]
              ]);} 
@@ -46,7 +46,7 @@ use GuzzleHttp\Exception\ClientException;
              exit();
             }
         }
-    }else if (isset($url) && isset($_POST['password']) && isset($_POST['prenom'])){
+    }else if (isset($urlReg) && isset($_POST['password']) && isset($_POST['prenom'])){
          
             $myClient = new GuzzleHttp\Client([
                 'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']
@@ -54,7 +54,7 @@ use GuzzleHttp\Exception\ClientException;
            try {
             $resp =  $myClient -> request('POST',$urlReg,[
                 'form_params'=> [
-                    'password' => $_POST['password'],
+                    'password' => hash('ripemd160',$_POST['password']),
                     'email' => $_POST['email'],
                     'first_name' => $_POST['first_name'],
                     'last_name' => $_POST['last_name'],

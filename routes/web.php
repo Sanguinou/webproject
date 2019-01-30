@@ -27,6 +27,14 @@ Route::post('event', function () {
     return view('event');
 });
 
+Route::get('event/AddLikes', function () {
+    return view('AddLikes');
+});
+
+Route::post('event/AddLikes', function () {
+    return view('AddLikes');
+});
+
 Route::get('event/{id}', function ($id) {
     return view('eventpics',$id_event = ["id_event"=>$id]);
 });
@@ -91,4 +99,17 @@ Route::get('connection', function () {
 });
 Route::post('connection', function () {
     return view('connection');
+});
+Route::get('AddImage', function () {
+    return view('AddImage');
+});
+Route::post('AddImage', function () {
+    return view('AddImage');
+});
+
+Route::get('AddVotes', function () {
+    return view('AddVotes');
+});
+Route::post('AddVotes', function () {
+    return view('AddVotes');
 });

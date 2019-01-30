@@ -88,8 +88,28 @@ if(isset($_SESSION['decoded'])){
     <?php
     $url_pic_event="http://localhost:3000/api/pictures_event/";
     if(isset($GLOBALS['isRegistered'])&& isset($GLOBALS['event'])){
-        if($GLOBALS['isRegistered']==1 && $GLOBALS['event']->id_status_event==3){
-            echo"<p>why not</p>";
+        if($GLOBALS['isRegistered']==1 && $GLOBALS['event'][0]->id_status_event==3){
+            echo '<button id="addPic" class="buttonStyle3 likePos center">Ajoute une photo</button>
+        <div id="addPicForm" style="display:none">                   
+            <form id="con" method="POST" action="http://127.0.0.1:8000/AddImage" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td><label for="file">Votre Image :</label></td>
+                        <td><input type="file" name="fileToUpload" id="fileToUpload"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="picture_event_body">Légende :</label></td>
+                        <td><textarea id="picture_event_body" name="picture_event_body" rows="10" cols="60"></textarea></td>
+                    </tr>  
+                </table>
+                <input type="hidden" value="'.$_SESSION['decoded']->id_user.'" name="id_user" />
+                <input type="hidden" value="'.$GLOBALS['event'][0]->id_event.'" name="id_event" />
+                <input type="hidden" name="picture_event_name" />  
+ 
+                <!-- Button for sign up -->
+                <input id="btn_Add_Pic" type="submit" name="formAddPic" value="Ajouter l\'image">
+            </form>
+        </div> ';
         }
     }
     if (isset($url_pic_event)){
@@ -98,30 +118,52 @@ if(isset($_SESSION['decoded'])){
         if ($resp -> getStatusCode() == 200){
             $body = $resp -> getBody();
             $GLOBALS['pictures_event'] = json_decode($body,true);
+            $url_likes="http://localhost:3000/api/likes/";
             foreach($GLOBALS['pictures_event'] as $pic){
-                echo "<div>
-                <img class='imgBorder imgPos center' style='background-image: url(".$pic['picture_event_body'].")' width ='1000' height='600'>
+              
+
+                echo '<div>
+                <img class="imgBorder imgPos center" style="background-image: url(http://127.0.0.1:8000/image/'.$pic["picture_event_name"].')" width ="1000" height="600">
                 <div class=eventPicGrid>
                     <div>
-                        <div class='picDesc center'>"
-                            .$pic['picture_event_body']."
+                        <div class="picDesc center">'
+                            .$pic["picture_event_body"].'
                         </div>
-                        <div class='likeGrid'>
-                            <div class='post'>POST : ".$pic['created_at']."</div>
-                            <button class='buttonStyle1 likePos center'>125</button>
-                            <button class='buttonStyle3 likePos center'>LIKE</button>
-                            <button class='buttonStyle3 likePos center' style='width: 100px'>SUPPR</button>
+                        <div class="likeGrid">
+                            <div class="post">POST : '.$pic["created_at"].'</div>
+                            ';
+                            if(isset($url_likes)){
+                                $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+                                $resp = $myClient -> request('GET',$url_likes,['form_params'=> ['id_picture_event' => $pic['id_picture_event']]], ['verify'=>false]);
+                                if ($resp -> getStatusCode() == 200){
+                                    $bodyLikes = $resp -> getBody();
+                                    $pic['likes'] = json_decode($bodyLikes,true);
+                                    if (isset($pic['likes'])&& sizeof($pic['likes'])>0){
+                                        foreach($pic['likes'] as $likes){
+                                        echo '<button class="buttonStyle1 likePos center">'.$likes['LIKES'].'</button>';
+
+                                        }
+                                    }
+                                }
+                            }
+                            echo '<form id="form" action="http://127.0.0.1:8000/event/AddLikes/" method="post">
+                                <input type="hidden" name="id_event" value="'.$id_event.'"/>
+                                <input type="hidden" name="id_picture_event" value="'.$pic['id_picture_event'].'"/>
+                                <input type="hidden" name="like" value="1"/>
+                                <input class="buttonStyle3 likePos Center" type="submit" value="LIKE"/>
+                                </form>
+                            <button class="buttonStyle3 likePos center" style="width: 100px">SUPPR</button>
                         </div>
                     </div>
                     <div>
-                        <img class='imgProfileBorder imgProfilePos' style='left: 10%; background-image: url(' width='150' height='150'>
-                        <div class='ideaBoxName' width='200' height='75' style='left: 3%; border: transparent;'> <b>Logan Paul</b> </div>
+                        <img class="imgProfileBorder imgProfilePos" style="left: 10%; background-image: url(\" \")" width="150" height="150">
+                        <div class="ideaBoxName" width="200" height="75" style="left: 3%; border: transparent;"> <b>Logan Paul</b> </div>
                     </div>
                 </div>
-            ";
+            ';
             
                 $url_comments="http://localhost:3000/api/comments/";
-                if (isset($url_pic_event)){
+                if (isset($url_comments)){
                     $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
                     $resp = $myClient -> request('GET',$url_comments,['form_params'=> ['id_picture_event' => $pic['id_picture_event']]], ['verify'=>false]);
                     if ($resp -> getStatusCode() == 200){
@@ -165,6 +207,21 @@ if(isset($_SESSION['decoded'])){
         </div>
         <div class="vector center"></div>
     </div>
+    <script>
+$(document).ready(function(){
+  $("#addPic").click(function(){
+    $("#addPicForm").toggle();
+  });
+});
+
+$(document).ready(function(){
+    $("#fileToUpload").change(function(){
+            var fileName = $("#fileToUpload").val();
+            $("#picture_event_name").value=fileName.split('\\').pop(); // clean from C:\fakepath OR C:\fake_path 
+    });
+ });
+</script>
+
     @endsection
 </body>
 

@@ -47,7 +47,7 @@ $url_event = "http://localhost:3000/api/events";
                             <div>
                                 <img class="imgBorder imgPos center" style="background-image: url(\'http://localhost:8000/image/'.$obj["picture_presentation_event"].'\')" width="500" height="300">
                                 <p class="titleEvent tEventPos center">'.$obj["event_name"].' - '.$obj["event_date"].'- </p>
-                                <form id="form" action=http://localhost:8000/event/'.$obj["id_event"].' method="post">
+                                <form id="form" action=http://127.0.0.1:8000/event/'.$obj["id_event"].' method="post">
                                 <input type="hidden" name="register" value="1"/>
                                 <input class="buttonStyle1 buttonEventPos" type="submit" value="'.$register.'"/>
                                 </form>;
@@ -66,7 +66,7 @@ $url_event = "http://localhost:3000/api/events";
                             <div>
                                 <img class="imgBorder imgPos center" style="background-image: url(\'http://localhost:8000/image/'.$obj["picture_presentation_event"].'\')" width="500" height="300">
                                 <p class="titleEvent tEventPos center">'.$obj["event_name"].' - '.$obj["event_date"].'- </p>
-                                <form id="form" action=http://localhost:8000/event/'.$obj["id_event"].' method="post">
+                                <form id="form" action=http://127.0.0.1:8000/event/'.$obj["id_event"].' method="post">
                                 <input class="buttonStyle1 buttonEventPos" type="submit" value="Voir les photos"/>
                                 </form>;                            
                                 </div>

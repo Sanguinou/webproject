@@ -21,6 +21,22 @@ $url_event = "http://localhost:3000/api/events";
         if ($resp -> getStatusCode() == 200){
             $body = $resp -> getBody();
             $GLOBALS['ideas'] = json_decode($body);
+            $GLOBALS['RandIdea'] = Rand(0,SizeOf($GLOBALS['ideas'])-1);
+
+            if(isset($GLOBALS['RandIdea'])){
+                $urlReg = "http://localhost:3000/api/users/".$GLOBALS['ideas'][$GLOBALS['RandIdea']]->id_user_create;     
+                $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']]);
+                try {
+                    $resp =  $myClient -> request('GET',$urlReg);}
+                catch (ClientException $e) {     
+                    echo "seems like something went wrong bro";
+                }
+                if(isset($resp)){ 
+                    $obj = json_decode($resp->getBody());
+                    $GLOBALS['ideas'][$GLOBALS['RandIdea']]->user_name = $obj[0]->first_name." ".$obj[0]->last_name;
+                    $GLOBALS['ideas'][$GLOBALS['RandIdea']]->profile_pic = $obj[0]->profile_pic;
+                }
+            };
         };
     };
     if (isset($url_product)){
@@ -49,10 +65,8 @@ $url_event = "http://localhost:3000/api/events";
 
     <div class="welcomeGrid">
         <div>
-        @foreach($events as $event)
-            @if ($event->id_status_event == 2)
             <div class="bg">
-                <img class="blurBackground" src="image/{{$event->picture_presentation_event}}">
+                <img class="blurBackground" src="http://localhost:8000/image/<?php echo $GLOBALS['events'][0]->picture_presentation_event;?>">
             </div>
             <div class="welcomeEventGrid">
                 <div>
@@ -73,8 +87,6 @@ $url_event = "http://localhost:3000/api/events";
                 </div>
                 <button class="buttonStyle2 viewAllPos" onclick="location.href = 'http://127.0.0.1:8000/event';"> Voir Tout ></button>
             </div>
-            @endif
-        @endforeach
         </div>
         <div>
             <h1 class="title">Boutique</h1>
@@ -82,7 +94,7 @@ $url_event = "http://localhost:3000/api/events";
             <div class="topMerchGrid">
                 <div>
                     <a href="#">
-                        <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="500">
+                        <img class="imgBorder imgPos center" src="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="500">
                     </a>
                     <div class="nameProduct" width="300" height="100">
                         Black tuxedo / cool wear - <b>1.000 €</b>
@@ -112,18 +124,14 @@ $url_event = "http://localhost:3000/api/events";
             <div class="ideaBox imgPos center">
                 <div class="ideaBoxGrid">
                     <div>
-                        <img class="imgProfileBorder imgProfilePos " style="background-image: url({{ asset('image/LP.png') }}" width="150" height="150">
-                        <div class="ideaBoxName center" width="200" height="75"> <b>Logan Paul</b> </div>
+                        <img class="imgProfileBorder imgProfilePos " src="http://localhost:8000/image/<?php echo $GLOBALS['ideas'][$GLOBALS['RandIdea']]->profile_pic;?>" width="150" height="150">
+                        <div class="ideaBoxName center" width="200" height="75"> <b><?php echo $GLOBALS['ideas'][$GLOBALS['RandIdea']]->user_name; ?></b> </div>
                         <button class="buttonStyle1 buttonIdeaPos center">Voir plus ></button>
                     </div>
                     <div class="ideaBoxText center">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi reiciendis, 
-                        quis dicta quas sit reprehenderit. Dolorum, maiores deserunt in, unde dicta ullam 
-                        voluptatum labore id debitis minima nulla numquam facilis.
+                        <?php echo $GLOBALS['ideas'][$GLOBALS['RandIdea']]->event_body;?>
                     </div>
                 </div>
-                @endif
-            @endforeach
             </div>
         </div> 
         <div>

@@ -1,4 +1,5 @@
-<?php 
+<?php
+ 
 if(isset($_SESSION['timeout'])){
     if ($_SESSION['timeout'] + 5 * 60 < time()) {
         session_unset(); 
@@ -83,11 +84,11 @@ footer {
                     }}?>
                     <li id="connexion">
                     <?php if(isset($_SESSION['decoded'])){
-                            echo"<a href='http://127.0.0.1:8000/profil/".$_SESSION['decoded']->id_user."'>".$_SESSION['decoded']->first_name."</a>";
+                            echo"<a href='http://127.0.0.1:8000/profile/'>".$_SESSION['decoded']->first_name."</a>";
                         } else{
                             echo"<a href='http://127.0.0.1:8000/connection'>Connection</a>";}?></li>
                     <li>
-                    <a href="logout"id="Out">&#x23FB;</a></li>
+                    <a href="http://127.0.0.1:8000/logout"id="Out">&#x23FB;</a></li>
                 </ul>
             </nav>
         </div>
