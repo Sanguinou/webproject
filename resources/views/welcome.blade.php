@@ -92,15 +92,34 @@ $url_event = "http://localhost:3000/api/events";
             <h1 class="title">Boutique</h1>
             <button class="buttonStyle2 viewAllPos" onclick="location.href =  'http://127.0.0.1:8000/shop';"> voir tout ></button>
             <div class="topMerchGrid">
-                <div>
-                    <a href="#">
-                        <img class="imgBorder imgPos center" src="background-image: url({{ asset('image/arnold.jpg') }}" width="300" height="500">
-                    </a>
-                    <div class="nameProduct" width="300" height="100">
-                        Black tuxedo / cool wear - <b>1.000 €</b>
-                    </div>
-                </div>
-                <div>
+                <?php if(isset($GLOBALS['products'])){                    
+                        for($i=0;$i<3;$i++){
+                            $url_pic_product='http://localhost:3000/api/pictures_product/'.$GLOBALS['products'][$i]->id_product;
+                                if (isset($url_product)){
+                                    $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+                                    $resp = $myClient -> request('GET',$url_product,['verify'=>false]);
+                                    if ($resp -> getStatusCode() == 200){
+                                        $body = $resp -> getBody();
+                                        $pic_products = json_decode($body);
+                                        foreach($pic_products as $pic_products){
+                                          echo '
+                                            <div>
+                                                <a href="#">
+                                                <img class="imgBorder imgPos center" src="http://127.0.0.1/image/'.$pic_product->picture_name.'" width="300" height="500">
+                                                </a>
+                                                <div class="nameProduct" width="300" height="100">
+                                                '.$GLOBALS['products'][$i]->product_name.'<b>'.$GLOBALS['products'][$i]->product_price.' €</b>
+                                                </div>
+                                            </div>';  
+                                        }
+                                    }
+                                }
+                            }
+                        }
+       
+
+                '};?>
+
                     <a href="#">
                         <img class="imgBorder imgPos center" src="{{ asset('image/gaelz.jpg') }}" width="300" height="500">
                     </a>

@@ -2,6 +2,16 @@
 
 <?php
 session_start();
+$url_product="http://localhost:3000/api/products/top";
+if (isset($url_product)){
+    $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+    $resp = $myClient -> request('GET',$url_product,['verify'=>false]);
+    if ($resp -> getStatusCode() == 200){
+        $body = $resp -> getBody();
+        $GLOBALS['productstop'] = json_decode($body);
+    };
+};
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,29 +73,6 @@ session_start();
             </p>
         </div>
     </div>
-    <?php
-    $url = "http://localhost:3000/api/login";
-    if (isset($url) && isset($_SESSION['token'])){
-        $myClient = new GuzzleHttp\Client([
-            'headers'=> ['User-Agent' => 'MyReader','Authorization' => 'bearer '.$_SESSION['token']]
-        ]);
-
-        $resp = $myClient -> request('GET',$url,['http_errors' => false]);
-        if ($resp -> getStatusCode() == 200){
-            $body = $resp -> getBody();
-         //   $obj = json_decode($body);
-           //     foreach( $obj as $obj ){
-                    echo "<p>".$body."</p>";
-                //};
-        }
-        else if($resp -> getStatusCode()== 403){
-            echo "<p> that is the wrong token bro </p>";
-        };
-    } else {
-            echo "<p> the token is not loaded </p>";
-            };
-
-    ?>
     <h2 class="title2">Produits :</h2>
     <button id=filterEvent class="buttonStyle3 buttonFilterPos dropdown" onclick="Drop('dropFilterEvent')">Filtre</button>
         <div id="dropFilterEvent" class="drop-content filterPos">

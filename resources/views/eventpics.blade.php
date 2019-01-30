@@ -57,25 +57,7 @@ if(isset($_SESSION['decoded'])){
     @endsection
 <body>
 @section('content')
-
-    <form method="post" action="eventpics" enctype="multipart/form-data">
-        <input type="file" name="files[]" multiple>
-        <input type="hidden" name="test">
-        <input type="submit" value="Upload File" name="submit">
-    </form>
-    <?php 
-    ?>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('input[type="file"]').change(function(e){
-                var fileName = e.target.files[0].name;
-                );
-            });
-        });
-
-</script>
-<script src="{{ asset('js/upload.js') }}"></script>
-    <!-- main event presentation -->
+=    <!-- main event presentation -->
     <h1 class="titleEventPic Center"><?php echo $GLOBALS['event'][0]->event_name ;?></h1>
     <div>
         <img class="picEvent imgPos center" style="background-image: url('http://localhost:8000/image/<?php echo $GLOBALS['event'][0]->picture_presentation_event;?>')" width="1000" height="600">
@@ -104,7 +86,7 @@ if(isset($_SESSION['decoded'])){
                 </table>
                 <input type="hidden" value="'.$_SESSION['decoded']->id_user.'" name="id_user" />
                 <input type="hidden" value="'.$GLOBALS['event'][0]->id_event.'" name="id_event" />
-                <input type="hidden" name="picture_event_name" />  
+                <input type="hidden" id="picture_event_name" name="picture_event_name" value="" />  
  
                 <!-- Button for sign up -->
                 <input id="btn_Add_Pic" type="submit" name="formAddPic" value="Ajouter l\'image">

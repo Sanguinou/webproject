@@ -8,16 +8,6 @@
         }
     };
 
-    $url_pic_event="http://localhost:3000/api/pictures_event/";
-    if (isset($url_pic_event)&& isset($_SESSION['decoded'])){
-        $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
-        $resp = $myClient -> request('POST',$url_pic_event,['form_params'=> ['id_event' => $_POST['id_event'],'id_user' => $_POST['id_user']
-        , 'picture_event_body' => $_POST['picture_event_body'], 'picture_event_body' => $_POST['picture_event_body'], 'picture_event_name' => $_POST['picture_event_name']
-        ]], ['verify'=>false]);
-        if ($resp -> getStatusCode() == 200){
-        }
-    }
-
 $target_dir = 'image/';
 $target_file = $target_dir ."/". basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -33,16 +23,7 @@ if(isset($_POST["submit"])) {
         $uploadOk = 0;
     }
 }
-// Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
+
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
@@ -55,10 +36,19 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        
+        $url_pic_event="http://localhost:3000/api/pictures_event/";
+        if (isset($url_pic_event)&& isset($_SESSION['decoded'])){
+            $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+            $resp = $myClient -> request('POST',$url_pic_event,['form_params'=> ['id_event' => $_POST['id_event'],'id_user' => $_POST['id_user']
+            , 'picture_event_body' => $_POST['picture_event_body'], 'picture_event_body' => $_POST['picture_event_body'], 'picture_event_name' => $_POST['picture_event_name']
+            ]], ['verify'=>false]);
+        header("Location:http://127.0.0.1:8000/event/".$_POST['id_event']);
+        exit;
+        }
     } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
+        header("Location:http://127.0.0.1:8000/event/".$_POST['id_event']);
+        exit;    }
 }
 
 ?>
