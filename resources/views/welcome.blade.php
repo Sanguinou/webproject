@@ -1,62 +1,34 @@
-@extends('layout',['isConnected' => 'Page Title'])
+
+@extends('layout');
 
 <?php
 session_start();
 $MaxEventsShown = 1;
 
-
-if(isset($_SESSION['timeout'])){
-    if ($_SESSION['timeout'] + 5 * 60 < time()) {
-        session_unset(); 
-    }else{
-        echo "@extends('layout')";
-    };
-}else{
-    echo "@extends('layout')";
-
-};
-
 $url_product="http://localhost:3000/api/products/top";
 $url_event = "http://localhost:3000/api/events";
     if (isset($url_event)){
-        $myClient = new GuzzleHttp\Client([
-        'headers'=> ['User-Agent' => 'MyReader']
-    ]);
-
-    $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 1]], ['verify'=>false]);
-
+        $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+        $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 2]], ['verify'=>false]);
         if ($resp -> getStatusCode() == 200){
             $body = $resp -> getBody();
             $GLOBALS['events'] = json_decode($body);
-
         };
     };
-
     if (isset($url_event)){
-        $myClient = new GuzzleHttp\Client([
-        'headers'=> ['User-Agent' => 'MyReader']
-    ]);
-
-    $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 2]], ['verify'=>false]);
-
+        $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+        $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 1]], ['verify'=>false]);
         if ($resp -> getStatusCode() == 200){
             $body = $resp -> getBody();
             $GLOBALS['ideas'] = json_decode($body);
-            for($i=0;$i<0;$i++){ 
-            };
         };
     };
-
     if (isset($url_product)){
-        $myClient = new GuzzleHttp\Client([
-        'headers'=> ['User-Agent' => 'MyReader']
-    ]);
-
-    $resp = $myClient -> request('GET',$url_product,['verify'=>false]);
+        $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+        $resp = $myClient -> request('GET',$url_product,['verify'=>false]);
         if ($resp -> getStatusCode() == 200){
             $body = $resp -> getBody();
             $GLOBALS['products'] = json_decode($body);
-
         };
     };
 ?>
@@ -80,14 +52,11 @@ $url_event = "http://localhost:3000/api/events";
             <div class="blurBackground" style="background-image: url({{ asset('image/bgevent.jpg') }})"></div>
             <div class="welcomeEventGrid">
                 <div>
-                    <img class="imgBorder imgPos center" src="{{ asset('image/bgevent.jpg') }}" width="600" height="300">
-                    <p class="titleEvent tEventPos center"><?php echo $GLOBALS['events'][0]->event_name." - ".$GLOBALS['events'][0]->event_date?> </p>
-
-                    <form id='form' action=<?php 
-                    if(isset($GLOBALS['events'])){
-                         echo "event/".$GLOBALS['events'][0]->id_event ;}?> method='post'>
-                    <input type='hidden' name='register' value='1'/>
-                    <input type='submit' value='Sinscrire maintenant' class='buttonStyle1 buttonEventPos'/>
+                    <img class="imgBorder imgPos center" src="http://localhost:8000/image/<?php echo $GLOBALS['events'][0]->picture_presentation_event;?>" width="600" height="300">
+                    <p class="titleEvent tEventPos center"><?php echo $GLOBALS['events'][0]->event_name." - ".$GLOBALS['events'][0]->event_date;?> </p>
+                    <form id='form' action=<?php if(isset($GLOBALS['events'])){echo "event/".$GLOBALS['events'][0]->id_event ;}?> method='post'>
+                        <input type='hidden' name='register' value='1'/>
+                        <input type='submit' value='Sinscrire maintenant' class='buttonStyle1 buttonEventPos'/>
                     </form>";
                 </div>
                 <div>

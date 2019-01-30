@@ -1,3 +1,10 @@
+<?php 
+if(isset($_SESSION['timeout'])){
+    if ($_SESSION['timeout'] + 5 * 60 < time()) {
+        session_unset(); 
+    }
+};
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -71,7 +78,16 @@ footer {
                     <li><a href="http://127.0.0.1:8000/event">événement</a></li>
                     <li><a href="http://127.0.0.1:8000/shop">Boutique</a></li>
                     <li><a href="http://127.0.0.1:8000/ideabox">Boite à idée</a></li>
-                    <li id="connexion"><a href="connection">Connexion</a></li>
+                    <?php if(isset($_SESSION['decoded'])){if($_SESSION['decoded']->id_status_user==2){
+                        echo "<li><a href='http://127.0.0.1:8000/Administration'>Administration</a></li>";
+                    }}?>
+                    <li id="connexion">
+                    <?php if(isset($_SESSION['decoded'])){
+                            echo"<a href='http://127.0.0.1:8000/profil/".$_SESSION['decoded']->id_user."'>".$_SESSION['decoded']->first_name."</a>";
+                        } else{
+                            echo"<a href='http://127.0.0.1:8000/connection'>Connection</a>";}?></li>
+                    <li>
+                    <a href="logout"id="Out">&#x23FB;</a></li>
                 </ul>
             </nav>
         </div>

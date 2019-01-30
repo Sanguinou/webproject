@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BDE Cesi - Profil</title>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/profile.css') }}"/>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
     @section('navbar')
@@ -40,7 +40,7 @@
                             <label for="nom">Nom :</label>
                         </td>
                         <td>
-                            <input type="text" placeholder="Votre nom" id="nom" name="nom" />                    
+                            <input type="file" id="nom" name="nom" />                    
                         </td>
                     </tr>
                     <tr>
@@ -77,6 +77,17 @@
             </form>
         </div>
     </div>
+    <script>
+
+    
+ $(document).ready(function(){
+    $("#nom").change(function(){
+            var fileName = $('#nom').val();
+            var clean=fileName.split('\\').pop(); // clean from C:\fakepath OR C:\fake_path 
+            alert('clean file name : '+ clean);
+    });
+ });
+ </script>
     @endsection
 </body>
     @section('footer')

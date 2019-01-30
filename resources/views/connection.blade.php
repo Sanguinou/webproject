@@ -9,10 +9,10 @@ use GuzzleHttp\Exception\ClientException;
 if(isset($_SESSION['timeout'])){
     if ($_SESSION['timeout'] + 5 * 60 < time()) {
         session_unset();
-        header("Location:http://localhost:8000/connexion");
+        header("Location:http://127.0.0.1:8000/connection");
         exit();     
     }else{
-        header("Location:http://localhost:8000/");
+        header("Location:http://127.0.0.1:8000/");
         exit();  
     }; 
 };
@@ -20,7 +20,7 @@ if(isset($_SESSION['timeout'])){
 $urlLog = "http://localhost:3000/api/login";
 $urlReg = "http://localhost:3000/api/users";
 
-if (isset($urlLog) && isset($_POST['password']) && !isset($_POST['prenom'])){
+if (isset($urlLog) && isset($_POST['password']) && !isset($_POST['first_name'])){
      
      $myClient = new GuzzleHttp\Client([
          'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']
@@ -41,11 +41,11 @@ if (isset($urlLog) && isset($_POST['password']) && !isset($_POST['prenom'])){
          $_SESSION['token'] = $obj->token;
          $_SESSION['decoded'] = JWT::decode($_SESSION['token'],'secret',array('HS256'));
          $_SESSION['timeout'] = time();
-         header("Location:http://localhost:8000/");
+         header("Location:http://127.0.0.1:8000/");
          exit();
         }
     }
-}else if (isset($url) && isset($_POST['password']) && isset($_POST['prenom'])){
+}else if (isset($url) && isset($_POST['password']) && isset($_POST['first_name'])){
      
         $myClient = new GuzzleHttp\Client([
             'headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']]);
@@ -56,21 +56,13 @@ if (isset($urlLog) && isset($_POST['password']) && !isset($_POST['prenom'])){
                 'email' => $_POST['email'],
                 'first_name' => $_POST['first_name'],
                 'last_name' => $_POST['last_name'],
-                'School_name' => $_POST['centre']]]);
+                'id_school' => $_POST['school']]]);
         } catch (ClientException $e) {     
             echo "seems like something went wrong bro";
-       };
-       if(isset($resp)){
-        if ($resp -> getStatusCode() == 200){
-            $obj = json_decode($resp->getBody());
-            $_SESSION['token'] = $obj->token;
-            $_SESSION['decoded'] = JWT::decode($_SESSION['token'],'secret',array('HS256'));
-            $_SESSION['timeout'] = time();
+        }
             header("Location:http://localhost:8000/");
             exit();
-           };
-       };
-};
+        };
 
 ?>
 <!DOCTYPE html>
@@ -102,11 +94,11 @@ if (isset($urlLog) && isset($_POST['password']) && !isset($_POST['prenom'])){
                     <label for="prenom">Prénom :</label>
                     <input class="input" type="text" placeholder="Votre Prénom" id="prenom" name="first_name" />
                     <label for="centre">Centre :</label>
-                    <select class="input" name="centre">
-                        <option value="arras">Arras</option>
-                        <option value="lille">Lille</option>
-                        <option value="bordeaux">Bordeaux</option>
-                        <option value="lyon">Lyon</option>
+                    <select class="input" name="school">
+                        <option value="2">Arras</option>
+                        <option value="1">Lille</option>
+                        <option value="19">Bordeaux</option>
+                        <option value="20">Lyon</option>
                     </select>
                     <label for="email">E-Mail :</label>
                     <input class="input" type="email" placeholder="Votre e-mail" id="email" name="email" />

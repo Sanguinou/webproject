@@ -3,11 +3,6 @@
 <?php
 session_start();
 
-if(isset($_SESSION['timeout'])){
-    if ($_SESSION['timeout'] + 5 * 60 < time()) {
-        session_unset(); 
-    };
-};
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,39 +42,39 @@ $url_event = "http://localhost:3000/api/events";
                 foreach($obj as $obj){
 
                     if($obj['id_status_event']==2){  
-                        echo "<div class='nextEvent hide show'>
-                        <div class='eventGrid'>
+                        echo '<div class="nextEvent hide show">
+                        <div class="eventGrid">
                             <div>
-                                <img class='imgBorder imgPos center' style='background-image: url({{ asset('image/bgevent.jpg') }}' width='500' height='300'>
-                                <p class='titleEvent tEventPos center'>".$obj['event_name']." - ".$obj['event_date']."- </p>
-                                <form id='form' action=event/".$obj['id_event']." method='post'>
-                                <input type='hidden' name='register' value='1'/>
-                                <input class='buttonStyle1 buttonEventPos' type='submit' value='".$register."'/>
+                                <img class="imgBorder imgPos center" style="background-image: url(\'http://localhost:8000/image/'.$obj["picture_presentation_event"].'\')" width="500" height="300">
+                                <p class="titleEvent tEventPos center">'.$obj["event_name"].' - '.$obj["event_date"].'- </p>
+                                <form id="form" action=http://localhost:8000/event/'.$obj["id_event"].' method="post">
+                                <input type="hidden" name="register" value="1"/>
+                                <input class="buttonStyle1 buttonEventPos" type="submit" value="'.$register.'"/>
                                 </form>;
                             </div>
-                            <div class='eventDesc center'>
-                                ".$obj['event_body']."
+                            <div class="eventDesc center">
+                                '.$obj["event_body"].'
                             </div>
                         </div>
-                        <div class='vector center'></div>
-                    </div>"; 
+                        <div class="vector center"></div>
+                    </div>'; 
                     }
-                    else if ($obj['id_status_event']==3){
-                        echo "
-                        <div class='finishedEvent hide show'>
-                        <div class='eventGrid'>
+                    else if ($obj["id_status_event"]==3){
+                        echo '
+                        <div class="finishedEvent hide show">
+                        <div class="eventGrid">
                             <div>
-                                <img class='imgBorder imgPos center' style='background-image: url({{ asset('image/bgevent2.jpg') }}' width='500' height='300'>
-                                <p class='titleEvent tEventPos center'>".$obj['event_name']." - ".$obj['event_date']."- </p>
-                                <form id='form' action=event/".$obj['id_event']." method='post'>
-                                <input class='buttonStyle1 buttonEventPos' type='submit' value='Voir les photos'/>
+                                <img class="imgBorder imgPos center" style="background-image: url(\'http://localhost:8000/image/'.$obj["picture_presentation_event"].'\')" width="500" height="300">
+                                <p class="titleEvent tEventPos center">'.$obj["event_name"].' - '.$obj["event_date"].'- </p>
+                                <form id="form" action=http://localhost:8000/event/'.$obj["id_event"].' method="post">
+                                <input class="buttonStyle1 buttonEventPos" type="submit" value="Voir les photos"/>
                                 </form>;                            
                                 </div>
-                            <div class='eventDesc center'>
-                            ".$obj['event_body']."
+                            <div class="eventDesc center">
+                            '.$obj["event_body"].'
                             </div>
                         </div>
-                        <div class='vector center'></div>";                        
+                        <div class="vector center"></div>';                        
                     };
                 };
         };

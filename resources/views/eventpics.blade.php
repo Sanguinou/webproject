@@ -1,15 +1,11 @@
 @extends('layout')
 <?php
 session_start();
-if(isset($_SESSION['timeout'])){
-    if ($_SESSION['timeout'] + 5 * 60 < time()) {
-        session_unset(); 
-    };
-};
+
 $url_event="http://localhost:3000/api/events/".$id_event;
 if (isset($url_event)){
     $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
-    $resp = $myClient -> request('GET',$url_event,['form_params'=> ['id_status_event' => 1]], ['verify'=>false]);
+    $resp = $myClient -> request('GET',$url_event, ['verify'=>false]);
     if ($resp -> getStatusCode() == 200){
         $body = $resp -> getBody();
         $GLOBALS['event'] = json_decode($body);
@@ -18,32 +14,31 @@ if (isset($url_event)){
 
 if(isset($_SESSION['decoded'])){
     $url_reg="http://localhost:3000/api/registers/";
-        if (isset($url_reg)){
-            $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']]);
-            $resp = $myClient -> request('GET',$url_reg,['form_params'=> ['id_event'=> $id_event,'id_user'=>$_SESSION['decoded']->id_user]], ['verify'=>false]);
+    if (isset($url_reg)){
+        $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']]);
+        $resp = $myClient -> request('GET',$url_reg,['form_params'=> ['id_event'=> $id_event,'id_user'=>$_SESSION['decoded']->id_user]], ['verify'=>false]);
         if ($resp -> getStatusCode() == 200){
             $bodyreg = $resp -> getBody();
             $decoded = json_decode($bodyreg,true);
             if(isset($decoded)){
                 $GLOBALS['isRegistered']=$decoded['isRegistered'];
-                print_r($GLOBALS['isRegistered']);
-            }
                 if($GLOBALS['isRegistered']!=1){
-                if(isset($_POST['register'])){
-                    $url_reg="http://localhost:3000/api/registers/";
-                if (isset($url_reg)){
-                    $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']]);
-                    $resp = $myClient -> request('POST',$url_reg,['form_params'=> ['id_event' => $id_event,'id_user' => $_SESSION['decoded']->id_user]], ['verify'=>false]);
-                    if ($resp -> getStatusCode() == 200){
-                        echo $_SESSION['decoded']->id_user;
+                    if(isset($_POST['register'])){
+                        $url_reg="http://localhost:3000/api/registers/";
+                        if (isset($url_reg)){
+                            $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader','Content-Type' =>'application/json']]);
+                            $resp = $myClient -> request('POST',$url_reg,['form_params'=> ['id_event' => $id_event,'id_user' => $_SESSION['decoded']->id_user]], ['verify'=>false]);
+                            if ($resp -> getStatusCode() == 200){
+                                echo $_SESSION['decoded']->id_user;
+                            };
+                        };
                     };
+                }else{
+                //echo "you are already registered";
                 };
-                };
-            }else{
-                echo "you are already registered";
             };
         };
-        };
+    };
 };
 ?>
 
@@ -69,9 +64,6 @@ if(isset($_SESSION['decoded'])){
         <input type="submit" value="Upload File" name="submit">
     </form>
     <?php 
-    if (isset($_POST['test'])){
-    echo "branlette";
-    }
     ?>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -86,7 +78,7 @@ if(isset($_SESSION['decoded'])){
     <!-- main event presentation -->
     <h1 class="titleEventPic Center"><?php echo $GLOBALS['event'][0]->event_name ;?></h1>
     <div>
-        <img class="imgBorder imgPos center" style="background-image: url({{ asset('image/gael.jpg') }}" width="1000" height="600">
+        <img class="imgBorder imgPos center" style="background-image: url('http://localhost:8000/image/<?php echo $GLOBALS['event'][0]->picture_presentation_event;?>')" width="1000" height="600">
         <div class="eventDescPic center">
         <?php echo $GLOBALS['event'][0]->event_body ;?>
 
@@ -95,6 +87,11 @@ if(isset($_SESSION['decoded'])){
     <div class="vector center"></div>
     <?php
     $url_pic_event="http://localhost:3000/api/pictures_event/";
+    if(isset($GLOBALS['isRegistered'])&& isset($GLOBALS['event'])){
+        if($GLOBALS['isRegistered']==1 && $GLOBALS['event']->id_status_event==3){
+            echo"<p>why not</p>";
+        }
+    }
     if (isset($url_pic_event)){
         $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
         $resp = $myClient -> request('GET',$url_pic_event,['form_params'=> ['id_event' => $id_event]], ['verify'=>false]);

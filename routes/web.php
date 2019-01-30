@@ -55,7 +55,9 @@ Route::get('ideabox', function () {
 Route::get('profile', function () {
     return view('profile');
 });
-
+Route::get('logout', function () {
+    return view('logout');
+});
 Route::get('item', function () {
     return view('item');
 });
