@@ -102,6 +102,8 @@ $(document).ready(function(){
     $(".finishedEvent").show();
   });
 });
+
+
 </script>
 @endsection
 

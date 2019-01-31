@@ -66,8 +66,14 @@ Route::post('product/{id}', function ($id) {
     return view('product',$id_product = ["id_product"=>$id]);
 });
 
-Route::get('cart', function () {
-    return view('cart');
+Route::get('panier', function () {
+    return view('panier');
+});
+Route::get('fonction-panier', function () {
+    return view('fonction-panier');
+});
+Route::post('panier', function () {
+    return view('panier');
 });
 Route::get('login', function () {
     return view('login');
@@ -92,10 +98,6 @@ Route::get('logout', function () {
 });
 Route::get('item', function () {
     return view('item');
-});
-
-Route::get('cart', function () {
-    return view('cart');
 });
 
 Route::get('connection', function () {

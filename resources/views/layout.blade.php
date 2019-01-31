@@ -1,10 +1,20 @@
 <?php
- 
 if(isset($_SESSION['timeout'])){
+    
+    
+    if( !isset($_SESSION['panier'])){
+		$_SESSION['panier']=array();
+		$_SESSION['panier']['id_product'] = array();
+		$_SESSION['panier']['quantity']= array();
+		$_SESSION['panier']['product_price']=array();
+    };
+    $_SESSION['verrou'] = false;
     if ($_SESSION['timeout'] + 5 * 60 < time()) {
         session_unset(); 
     }
-};
+} else {
+    $_SESSION['verrou'] = true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">

@@ -97,6 +97,21 @@ session_start();
                                                 <div class="nameProduct" width="300" height="100">
                                                     '.$products->product_name." ".'<b>'.$products->product_price.' €</b>
                                                 </div>
+                                                <form class="products" id="add'.$products->id_product.'" action=http://127.0.0.1:8000/panier/  method="post">
+                                                    <input type="hidden" name="action" value="ajout">
+                                                    <input type="hidden" name="id_product" value="'.$products->id_product.'"/>
+                                                    <input type="hidden" name="product_price" value="'.$products->product_price.'">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <input class="buttonStyle1 buttonEventPos" type="submit" value="+">
+                                                </form>
+                
+                                                <form class="products" id="del'.$products->id_product.'" action=http://127.0.0.1:8000/panier/  method="post">
+                                                    <input type="hidden" name="action" value="suppression">
+                                                    <input type="hidden" name="id_product" value="'.$products->id_product.'">
+                                                    <input type="hidden" name="product_price" value="'.$products->product_price.'">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <input class="buttonStyle1 buttonEventPos" type="submit" value="-">
+                                                </form>
                                             </div>';
                                     };
                                 };
@@ -170,7 +185,22 @@ session_start();
                 $("#accessories").show();
             });
         });
-</script>
+        $(document).ready(function(){
+            $( ".products" ).submit(function(event) {
+                var frm = $('#'+event.currentTarget.id);
+                $.ajax({
+                    type: frm.attr('method'),
+                    url: frm.attr('action'),
+                    data: frm.serialize(),
+                    dataType : 'html',
+                    success: function (data) {
+                        alert('ok'+frm.attr('method'));
+                    }
+                });
+            event.preventDefault();
+            });
+        });
+    </script>
     @endsection
 </body>
 
