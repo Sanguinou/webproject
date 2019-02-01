@@ -16,6 +16,7 @@ if(isset($_SESSION['timeout'])){
     $_SESSION['verrou'] = true;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -29,8 +30,9 @@ body{
 }
 
 header{
+
+    position:relative;
     background: black;
-    padding-top: 10px;
     min-height: 60px;
 }
 
@@ -54,8 +56,12 @@ header nav{
     margin-top: -5px; /* up or down the nav bar */
 }
 
+header li .white{
+    color: #ffffff;
+}
+
 header li #connexion{
-    color: black;
+    color-color: #000000;
     background: #ffffff;
     font-size: 20px;
     font-weight: bold;
@@ -68,11 +74,17 @@ header li #connexion{
 }
 
 footer {
-    background: black;
-    padding-top: 0px;
+    background-color: #000000;
+    margin-top: 100px;
     height: 100px;
     color: #ffffff;
 }
+
+footer button{
+    background-color: #000000;
+    color: #ffffff;
+    margin-left : 85%;
+    border : transparent;
 
 </style>
 
@@ -85,20 +97,20 @@ footer {
         </div>
             <nav>
                 <ul>
-                    <li><a href="http://127.0.0.1:8000">Acceuil</a></li>
-                    <li><a href="http://127.0.0.1:8000/event">événement</a></li>
-                    <li><a href="http://127.0.0.1:8000/shop">Boutique</a></li>
-                    <li><a href="http://127.0.0.1:8000/ideabox">Boite à idée</a></li>
+                    <li><a class="white" href="http://127.0.0.1:8000/">Accueil</a></li>
+                    <li><a class="white" href="http://127.0.0.1:8000/event">événement</a></li>
+                    <li><a class="white" href="http://127.0.0.1:8000/shop">Boutique</a></li>
+                    <li><a class="white" href="http://127.0.0.1:8000/ideabox">Boite à idée</a></li>
                     <?php if(isset($_SESSION['decoded'])){if($_SESSION['decoded']->id_status_user==2){
                         echo "<li><a href='http://127.0.0.1:8000/Administration'>Administration</a></li>";
                     }}?>
                     <li id="connexion">
                     <?php if(isset($_SESSION['decoded'])){
-                            echo"<a href='http://127.0.0.1:8000/profile/'>".$_SESSION['decoded']->first_name."</a>";
+                            echo"<a class='white' href='http://127.0.0.1:8000/profile'>".$_SESSION['decoded']->first_name."</a>";
                         } else{
-                            echo"<a href='http://127.0.0.1:8000/connection'>Connection</a>";}?></li>
+                            echo"<a class='white' href='http://127.0.0.1:8000/connection'>Connection</a>";}?></li>
                     <li>
-                    <a href="http://127.0.0.1:8000/logout"id="Out">&#x23FB;</a></li>
+                    <a class="white" href="http://127.0.0.1:8000/logout"id="Out">&#x23FB;</a></li>
                 </ul>
             </nav>
         </div>
@@ -107,10 +119,10 @@ footer {
     <div class="container">
         @yield('content')
     </div>
-
     @section('footer')
     <footer>
         <p>&copy; Groupe4</p>
+        <button class="button_mentions" onclick="location.href = 'http://localhost:8000/legalnotice';"> Mentions légales</button>
     </footer>
     @show
 

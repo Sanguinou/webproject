@@ -21,7 +21,7 @@
     <div id="profil_page">
         <h2>Profil</h2>
         <div id="profil_id">
-            <img src="http://127.0.0.1:8000/image/"<?php if(isset($_SESSION['decoded'])){ echo $_SESSION['decoded']->profil_pic ;}?>>
+            <?php if(isset($_SESSION['decoded'])){ echo '<img src="http://127.0.0.1:8000/image/'.$_SESSION["decoded"]->profile_pic.'">';}?>
         </div>
         <div id="profil_information">
             <h3>Info utilisateur</h3>

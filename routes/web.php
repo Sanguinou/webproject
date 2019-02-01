@@ -35,6 +35,38 @@ Route::post('event/AddLikes', function () {
     return view('AddLikes');
 });
 
+Route::get('event/AddComm', function () {
+    return view('AddComm');
+});
+
+Route::post('event/AddComm', function () {
+    return view('AddComm');
+});
+
+Route::get('event/SupprLikes', function () {
+    return view('SupprLikes');
+});
+
+Route::post('event/SupprLikes', function () {
+    return view('SupprLikes');
+});
+
+Route::get('event/SupprImageEvent', function () {
+    return view('SupprImageEvent');
+});
+
+Route::post('event/SupprImageEvent', function () {
+    return view('SupprImageEvent');
+});
+
+Route::get('event/SupprComment', function () {
+    return view('SupprComment');
+});
+
+Route::post('event/SupprComment', function () {
+    return view('SupprComment');
+});
+
 Route::get('event/{id}', function ($id) {
     return view('eventpics',$id_event = ["id_event"=>$id]);
 });
@@ -112,10 +144,43 @@ Route::get('AddImage', function () {
 Route::post('AddImage', function () {
     return view('AddImage');
 });
+Route::get('AddEvent', function () {
+    return view('AddEvent');
+});
+Route::post('AddEvent', function () {
+    return view('AddEvent');
+});
 
 Route::get('AddVotes', function () {
     return view('AddVotes');
 });
 Route::post('AddVotes', function () {
     return view('AddVotes');
+});
+Route::get('Administration', function () {
+    return view('admin');
+});
+
+Route::post('Administration', function () {
+    return view('admin');
+});
+
+Route::get('Buy', function () {
+    return view('createOrder');
+});
+
+Route::post('Buy', function () {
+    return view('createOrder');
+});
+
+Route::get('createEvent', function () {
+    return view('createevent');
+});
+
+Route::post('createEvent', function () {
+    return view('createevent');
+});
+
+Route::get('legalnotice', function () {
+    return view('legalnotice');
 });

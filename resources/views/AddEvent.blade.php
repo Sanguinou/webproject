@@ -6,10 +6,6 @@
             header("Location:http://127.0.0.1:8000/connection");
             exit();     
         }
-        else if(!isset($_SESSION['timeout'])){
-            header("Location:http://127.0.0.1:8000/connection");
-            exit();  
-        }
     };
 
 $target_dir = 'image/';
@@ -40,18 +36,15 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        
-        $url_pic_event="http://localhost:3000/api/pictures_event/";
-        if (isset($url_pic_event)&& isset($_SESSION['decoded'])){
+        $url_event="http://localhost:3000/api/events/";
+        if (isset($url_event)&& isset($_SESSION['decoded'])){
             $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
-            $resp = $myClient -> request('POST',$url_pic_event,['form_params'=> ['id_event' => $_POST['id_event'],'id_user' => $_POST['id_user']
-            , 'picture_event_body' => $_POST['picture_event_body'], 'picture_event_body' => $_POST['picture_event_body'], 'picture_event_name' => $_POST['picture_event_name']
+            $resp = $myClient -> request('POST',$url_event,['form_params'=> ['event_name' => $_POST['event_name'],'id_user_create' => $_SESSION['decoded']->id_user
+            , 'event_body' => $_POST['event_body'], 'event_date' => $_POST['event_date'], 'event_location' => $_POST['event_location'], 'picture_presentation_event' => $_POST['picture_presentation_event']
             ]], ['verify'=>false]);
-        header("Location:http://127.0.0.1:8000/event/".$_POST['id_event']);
-        exit;
         }
     } else {
-        header("Location:http://127.0.0.1:8000/event/".$_POST['id_event']);
+        header("Location:http://127.0.0.1:8000/event/");
         exit;    }
 }
 

@@ -3,7 +3,10 @@
 <?php
 session_start();
 include_once("./fonction-panier.php");
-
+if(isVerrouille()){
+    header("Location:http://127.0.0.1:8000/connection");
+    exit;
+}
 $erreur = false;
 
 $action = (isset($_POST['action'])? $_POST['action']:  (isset($_GET['action'])? $_GET['action']:null )) ;
@@ -41,70 +44,127 @@ if (!$erreur){
          break;
 
       Case "suppression":
-         supprimerArticle($id_product);
+         suppArticle($id_product,$quantity);
          break;
 
       Case "refresh" :
-         for ($i = 0 ; $i < count($QteArticle) ; $i++)
-         {
-            modifierQTeArticle($_SESSION['panier']['id_product'][$i],$QteArticle[$i]);
-         }
+         modifierQTeArticle($id_product,$quantity);
          break;
 
       Default:
          break;
    }
 }
-
-
-echo '<?xml version="1.0" encoding="utf-8"?>';?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
-<head>
-<title>Votre panier</title>
-</head>
-<body>
-<form method="post" action="panier">
-<table style="width: 400px">
-	<tr>
-		<td colspan="4">Votre panier</td>
-	</tr>
-	<tr>
-		<td>Libellé</td>
-		<td>Quantité</td>
-		<td>Prix Unitaire</td>
-		<td>Action</td>
-	</tr>
-
-
-<?php
-if (isset($_SESSION['panier']) && isset($_SESSION['panier']['id_product'])){
-    if(count($_SESSION['panier']['id_product'])>0){
-	    $nbArticles=count($_SESSION['panier']['id_product']);
-	    for ($i=0 ;$i < $nbArticles ; $i++){
-	        echo "<tr>";
-	            echo "<td>".htmlspecialchars($_SESSION['panier']['id_product'][$i])."</ td>";
-	            echo "<td><input type=\"text\" size=\"4\" name=\"quantity[]\" value=\"".htmlspecialchars($_SESSION['panier']['quantity'][$i])."\"/></td>";
-	            echo "<td>".htmlspecialchars($_SESSION['panier']['product_price'][$i])."</td>";
-	            echo "<td><a href=\"".htmlspecialchars("panier.php?action=suppression&id_product=".rawurlencode($_SESSION['panier']['id_product'][$i]))."\">XX</a></td>";
-	        echo "</tr>";
-	    };
-	    echo "<tr><td colspan=\"2\"> </td>";
-	    echo "<td colspan=\"2\">";
-	    echo "Total : ".MontantGlobal();
-	    echo "</td></tr>";
-
-	    echo "<tr><td colspan=\"4\">";
-	    echo "<input type=\"submit\" value=\"Rafraichir\"/>";
-	    echo "<input type=\"hidden\" name=\"action\" value=\"refresh\"/>";
-
-	    echo "</td></tr>";
-	}else{
-        echo "<tr><td>Votre panier est vide </ td></tr>";
-        };
-    };
 ?>
-</table>
-</form>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Site BDE - Panier</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/cart.css') }}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+    @section('navbar')
+        @parent
+    @endsection
+<body>
+
+    @section('content')
+    <h2>panier</h2>
+        <table id="panier">
+            <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>quantité</th>
+                <th>Total</th>
+            </tr>
+    <?php
+        if (isset($_SESSION['panier']) && isset($_SESSION['panier']['id_product'])){
+            $i=0;
+            foreach($_SESSION['panier']['id_product'] as $id_product){
+                $url_product="http://localhost:3000/api/products/".$id_product;
+                if (isset($url_product)){
+                    $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+                    $resp = $myClient -> request('GET',$url_product,['verify'=>false]);
+                    if ($resp -> getStatusCode() == 200){
+                        $body = $resp -> getBody();
+                        $product = json_decode($body);
+                        echo '
+                        <form class="products" id="change'.$id_product.'" method="post" action="panier">                                      
+                            <input type="hidden" name="action" value="refresh">
+                            <input type="hidden" name="id_product" value="'.$id_product.'">
+                            <input type="hidden" name="product_price" value="'.$product[0]->product_price.'">
+                            <tr>
+                                <td>
+                                    <p>'.$product[0]->product_name.'</p>
+                                </td>
+                                <td>
+                                    <p>'.$product[0]->product_price.'</p>
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="'.$_SESSION["panier"]["quantity"][$i].'" id="quantity" name="quantity"/> 
+                                </td>
+                                <td>
+                                <p>'.$product[0]->product_price*$_SESSION["panier"]["quantity"][$i].'</p>
+                                </td>    
+                            </tr>
+                        </form>';
+                            
+                            $i++;
+                    }
+                }
+            }
+        }
+ ?>
+
+        </table>
+        <div id="total_payement">
+            <?php echo '<p>total : '.MontantGlobal().' €</p>';?>
+            <form id="ok" method="post" action="http://127.0.0.1:8000/Buy/">
+                <input type="hidden" name="order">
+                <input id="payer" type="submit" name="payer" value="Payement">
+            </form>
+        </div>
+      
+        </form>  
+        </table>
+<script>
+        $(document).ready(function(){
+            $(".refresh").on('keydown', function(event) {
+                if(event.which == 13){
+                    $('#'+event.currentTarget.id).parent().submit();
+                };
+            });
+        });
+
+
+$(document).ready(function(){
+            $(document).on('submit','#ok',function(event) {
+                var frm = $('#'+event.currentTarget.id);
+                $.ajax({
+                    type: frm.attr('method'),
+                    url: frm.attr('action'),
+                    data: frm.serialize(),
+                    dataType : 'html',
+                    success: function (data) {
+                    }                
+                    });                    
+                event.preventDefault();
+                location.reload(true);
+
+            });
+});
+
+</script>
+ @endsection
 </body>
+
+    @section('footer')
+        @parent
+    @endsection
 </html>
+
