@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mentions Légales</title>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/legalnotice.css') }}"/>
+    <meta name="keywords" content="Site Web, BDE du CESI, Campus CESI, Arras, Projetweb"/>
 </head>
 @section('navbar')
         @parent
@@ -20,7 +21,7 @@
     En vous connectant sur ce site, vous acceptez sans réserves les présentes modalités.</p>
     <p class="para"> Aussi, conformément à l’article n°6 de la Loi n°2004-575 du 21 Juin 2004
     pour la confiance dans l’économie numérique, les responsables du présent site internet
-    <a href="http://www.localhost:8000">www.localhost.BDE</a> sont :
+    <a href="http://127.0.0.1:8000">www.localhost.BDE</a> sont :
     </p>
     <p><b>Editeur du Site :</b></p>
         <p>Groupe 4</p>
@@ -29,27 +30,27 @@
         <p>7 Rue Diderot, 62000 Arras</p>
         <p>Téléphone :0123456789 - Fax : 9876543210</p>
         <p>Email : groupe4@outlook.fr</p>
-        <p>Site Web : <a href="http://www.localhost:8000">www.localhost.BDE</a></p>
+        <p>Site Web : <a href="http://127.0.0.1:8000">www.localhost.BDE</a></p>
         </hr>
         <p><b>Hébergement :</b></p>
         <p>Hébergeur : Groupe 4</p>
         <p>7 Rue Diderot, 62000 Arras</p>
-        <p>Site Web :  <a href="http://www.localhost:8000">www.localhost.BDE</a></p>
+        <p>Site Web :  <a href="http://127.0.0.1:8000">www.localhost.BDE</a></p>
         </hr>
         <p><b>Développement</b><b> : </b></p>
         <p>Simon / Gael / Matthieu / Aymeric</p>
         <p>Adresse : 7 Rue Diderot, 62000 Arras</p>
-        <p>Site Web : <a href="http://www.localhost:8000">www.localhost.BDE</a></p>
+        <p>Site Web : <a href="http://127.0.0.1:8000">www.localhost.BDE</a></p>
         </hr>
         <p><b>Conditions d’utilisation : </b></p>
-        <p class="para">Ce site (<a href="http://www.localhost:8000">www.localhost.BDE</a>)
+        <p class="para">Ce site (<a href="http://127.0.0.1:8000">www.localhost.BDE</a>)
         est proposé en différents langages web (HTML, HTML5, Javascript, CSS, etc…) pour un meilleur confort d'utilisation et un graphisme plus agréable,
         nous vous recommandons de recourir à des navigateurs modernes comme Internet explorer, Safari, Firefox, Google Chrome, etc…</p>
 
         <p>Groupe 4 met en œuvre tous les moyens dont elle dispose, pour assurer une information fiable et une mise à jour fiable de ses sites internet. Toutefois, des erreurs ou omissions peuvent survenir.</p>
         <p> L'internaute devra donc s'assurer de l'exactitude des informations auprès de , et signaler toutes modifications du site qu'il jugerait utile. Il n'est en aucun cas responsable de l'utilisation faite de ces informations, et de tout préjudice direct ou indirect pouvant en découler.</p>
 
-        <p class="para"><b>Cookies : </b>Le site <a href="http://www.localhost:8000">www.localhost.BDE</a> peut-être amené à vous demander l’acceptation des cookies pour des besoins de statistiques et d'affichage.</p>
+        <p class="para"><b>Cookies : </b>Le site <a href="http://127.0.0.1:8000">www.localhost.BDE</a> peut-être amené à vous demander l’acceptation des cookies pour des besoins de statistiques et d'affichage.</p>
         <p> Un cookies est une information déposée sur votre disque dur par le serveur du site que vous visitez. Il contient plusieurs données qui sont stockées sur votre ordinateur dans un simple fichier texte auquel un serveur accède pour lire et enregistrer des informations . </p>
         <p>Certaines parties de ce site ne peuvent être fonctionnelles sans l’acceptation de cookies.</p>
 
@@ -67,8 +68,8 @@
              Groupe 4 se réserve le droit d’accepter ou de refuser un hyperlien sans avoir à en justifier sa décision.</p>
         </hr>
         <p><b>Services fournis : </b></p>
-        <p>L'ensemble des activités de la société ainsi que ses informations sont présentés sur notre site <a href="http://www.localhost:8000">www.localhost.BDE</a>.</p]http://www.localhost:8000"></a>.</p>
-        <p>Groupe 4 s’efforce de fournir sur le site www.localhost.BDE des informations aussi précises que possible. les renseignements figurant sur le site <a href="http://www.localhost:8000">www.localhost.BDE</a> ne sont pas exhaustifs et les photos non contractuelles. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne. Par ailleurs, tous les informations indiquées sur le site sont données à titre indicatif, et sont susceptibles de changer ou d’évoluer sans préavis.  </p>
+        <p>L'ensemble des activités de la société ainsi que ses informations sont présentés sur notre site <a href="http://127.0.0.1:8000">www.localhost.BDE</a>.</p]http://127.0.0.1:8000"></a>.</p>
+        <p>Groupe 4 s’efforce de fournir sur le site www.localhost.BDE des informations aussi précises que possible. les renseignements figurant sur le site <a href="http://127.0.0.1:8000">www.localhost.BDE</a> ne sont pas exhaustifs et les photos non contractuelles. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne. Par ailleurs, tous les informations indiquées sur le site sont données à titre indicatif, et sont susceptibles de changer ou d’évoluer sans préavis.  </p>
         </hr>
         <p><b>Limitation contractuelles sur les données : </b></p>
         <p>Les informations contenues sur ce site sont aussi précises que possible et le site remis à jour à différentes
@@ -89,7 +90,7 @@
             engager la responsabilité de Groupe 4.</p>
         </hr>
         <p><b>Propriété intellectuelle :</b></p>
-        <p>Tout le contenu du présent sur le site <a href="http://www.localhost:8000">www.localhost.BDE</a>,
+        <p>Tout le contenu du présent sur le site <a href="http://127.0.0.1:8000">www.localhost.BDE</a>,
             incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et
             icônes ainsi que leur mise en forme sont la propriété exclusive de la société à l'exception des marques, logos
             ou contenus appartenant à d'autres sociétés partenaires ou auteurs.</p>
@@ -109,15 +110,15 @@
             auprès de la Commission nationale de l'informatique et des libertés (<a href="http://www.cnil.fr/">www.cnil.fr</a>).</p>
         </hr>
         <p><b>Litiges : </b></p>
-        <p>Les présentes conditions du site <a href="http://www.localhost:8000">www.localhost.BDE
-        </a]http://www.localhost:8000"></a> sont régies par les lois françaises
+        <p>Les présentes conditions du site <a href="http://127.0.0.1:8000">www.localhost.BDE
+        </a]http://127.0.0.1:8000"></a> sont régies par les lois françaises
         et toute contestation ou litiges qui pourraient naître de l'interprétation ou de l'exécution de celles-ci seront de la 
         compétence exclusive des tribunaux dont dépend le siège social de la société. La langue de référence, 
         pour le règlement de contentieux éventuels, est le français.</p>
         </hr>
         <p><b>Données personnelles :</b></p>
         <p>De manière générale, vous n’êtes pas tenu de nous communiquer vos données personnelles lorsque vous
-            visitez notre site Internet <a href="http://www.localhost:8000">www.localhost.BDE</a>.</p>
+            visitez notre site Internet <a href="http://127.0.0.1:8000">www.localhost.BDE</a>.</p>
 
         <p>Cependant, ce principe comporte certaines exceptions. En effet, pour certains services proposés 
             par notre site, vous pouvez être amenés à nous communiquer certaines données telles que : votre nom, 

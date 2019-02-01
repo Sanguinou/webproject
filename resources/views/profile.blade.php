@@ -10,6 +10,7 @@
     <title>BDE Cesi - Profil</title>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/profile.css') }}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="keywords" content="Site Web, BDE du CESI, Campus CESI, Arras, Projetweb"/>
 </head>
 
     @section('navbar')

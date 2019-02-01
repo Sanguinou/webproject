@@ -51,6 +51,7 @@ if(isset($_SESSION['decoded'])){
     <link rel="stylesheet" type="text/css" media="screen" href="{{  asset('css/style.css') }}"/>
   <script src="{{ asset('js/script.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta name="keywords" content="Site Web, BDE du CESI, Campus CESI, Arras, Projetweb"/>
 </head>
 @section('navbar')
         @parent
@@ -101,6 +102,20 @@ if(isset($_SESSION['decoded'])){
             $body = $resp -> getBody();
             $GLOBALS['pictures_event'] = json_decode($body,true);
             $url_likes="http://localhost:3000/api/likes/";
+            if(isset($_SESSION['decoded'])){
+                if($_SESSION['decoded']->id_status_user>1){
+                echo '      <form action="" method="post">
+                                <input type="hidden" name="download" value="1"/>
+                                <input class="buttonStyle3 likePos Center" type="submit" value="DOWNLOAD"/>
+                            </form>';
+                    if(isset($_POST['download'])){
+                        foreach($GLOBALS['pictures_event'] as $pic){
+                            $image = file_get_contents('http://127.0.0.1:8000/image/'.$pic['picture_event_name']);
+                            file_put_contents('C:/'.$pic['picture_event_name'], $image); //Where to save the image on your server
+                        }
+                    }
+                }
+            }
             foreach($GLOBALS['pictures_event'] as $pic){
                 echo '<div>
                 <img class="imgBorder imgPos center" style="background-image: url(http://127.0.0.1:8000/image/'.$pic["picture_event_name"].')" width ="1000" height="600">
@@ -151,13 +166,24 @@ if(isset($_SESSION['decoded'])){
                                 }
                             }
                             if(isset($_SESSION['decoded'])){
-                                if(($pic['id_user'] == $_SESSION['decoded']->id_user) || $_SESSION['decoded']->id_status_user){
+                                if(($pic['id_user'] == $_SESSION['decoded']->id_user) || $_SESSION['decoded']->id_status_user>1){
                                     echo '
                                     <form id="form" action="http://127.0.0.1:8000/event/SupprImageEvent/" method="post">
                                         <input type="hidden" name="id_user" value="'.$pic['id_user'].'"/>
                                         <input type="hidden" name="id_event" value="'.$id_event.'"/>
                                         <input type="hidden" name="id_picture_event" value="'.$pic['id_picture_event'].'"/>
                                         <input class="buttonStyle3 likePos Center" style="width: 100px" type="submit" value="SUPPR"/>
+                                    </form>';
+                                }
+                            }
+                            if(isset($_SESSION['decoded'])){
+                                if($_SESSION['decoded']->id_status_user!=1){
+                                    echo '
+                                    <form id="form" action="http://127.0.0.1:8000/event/SignalerImage/" method="post">
+                                        <input type="hidden" name="id_event" value="'.$id_event.'"/>
+                                        <input type="hidden" name="id_status_content" value="2"/>                   
+                                        <input type="hidden" name="id_picture_event" value="'.$pic['id_picture_event'].'"/>
+                                        <input class="buttonStyle3 likePos Center" style="width: 100px" type="submit" value="SIGNALER"/>
                                     </form>';
                                 }
                             }
@@ -200,7 +226,7 @@ if(isset($_SESSION['decoded'])){
                 <input type="hidden" value="'.$pic['id_picture_event'].'" name="id_picture_event" />
 
                 <!-- Button for sign up -->
-                <input id="btn_Add_Pic" type="submit" name="formAddCom" value="Ajouter l\'image">
+                <input id="btn_Add_Pic" type="submit" name="formAddCom" value="Ajouter le commentaire">
             </form>
         </div> ';
     }
@@ -249,8 +275,18 @@ if(isset($_SESSION['decoded'])){
                                         </form>';
                                     }
                                 }
+                                if(isset($_SESSION['decoded'])){
+                                    if($_SESSION['decoded']->id_status_user!=1){
+                                        echo '
+                                        <form id="form" action="http://127.0.0.1:8000/event/SignalerComment/" method="post">
+                                            <input type="hidden" name="id_event" value="'.$id_event.'"/>
+                                            <input type="hidden" name="id_status_content" value="2"/>                   
+                                            <input type="hidden" name="id_comment" value="'.$comments['id_comment'].'"/>
+                                            <input class="buttonStyle3 likePos Center" style="width: 100px" type="submit" value="SIGNALER"/>
+                                        </form>';
+                                    }
+                                }
                                 echo '
-                                <button class="buttonStyle3 likePos center" style="width: 175px">SIGNALER</button>
                             </div>
                         </div>     
                     </div>
@@ -284,8 +320,6 @@ $(document).ready(function(){
     $("#addCommForm").toggle();
   });
 });
-
-
 
 
     $(document).ready(function(){

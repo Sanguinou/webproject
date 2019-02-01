@@ -18,6 +18,7 @@ if (isset($url_event)){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{{  asset('css/style.css') }}"/>
     <script src="{{ asset('js/script.js') }}"></script>
+    <meta name="keywords" content="Site Web, BDE du CESI, Campus CESI, Arras, Projetweb"/>
 </head>
 
     @section('navbar')

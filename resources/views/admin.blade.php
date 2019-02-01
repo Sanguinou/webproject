@@ -1,5 +1,14 @@
 @extends('layout')
+<?php
+session_start();
+if(isset($_SESSION['decoded'])){
+    if(($_SESSION['decoded']->id_status_user)=="1"){
+        header("Location:http://127.0.0.1:8000/");
+        exit();
+    }
+}
 
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,6 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" media="screen" href="{{  asset('css/admin.css') }}"/>
+    <meta name="keywords" content="Site Web, BDE du CESI, Campus CESI, Arras, Projetweb"/>
 </head>
 
 @section('navbar')

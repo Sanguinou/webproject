@@ -73,6 +73,7 @@ if (isset($urlLog) && isset($_POST['password']) && !isset($_POST['first_name']))
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Site BDE - Connexion</title>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/connexion.css') }}"/>
+    <meta name="keywords" content="Site Web, BDE du CESI, Campus CESI, Arras, Projetweb"/>
 
 </head>
     @section('navbar')

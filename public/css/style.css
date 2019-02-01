@@ -22,7 +22,6 @@ body {
 
 .welcomeGrid {
     display: grid;
-    grid-template-rows: 1.5fr 2.5fr 2fr 2fr;
 }
 
 .welcomeEventGrid {

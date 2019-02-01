@@ -1,5 +1,5 @@
 
-@extends('layout');
+@extends('layout')
 
 <?php
 session_start();
@@ -56,6 +56,7 @@ $url_event = "http://localhost:3000/api/events";
     <title>BDE Cesi - Acceuil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/style.css') }}" />
+    <meta name="keywords" content="Site Web, BDE du CESI, Campus CESI, Arras, Projetweb"/>
 </head>
 @section('navbar')
         @parent
@@ -74,8 +75,8 @@ $url_event = "http://localhost:3000/api/events";
                     <p class="titleEvent tEventPos center"><?php echo $GLOBALS['events'][0]->event_name." - ".$GLOBALS['events'][0]->event_date;?> </p>
                     <form id='form' action=<?php if(isset($GLOBALS['events'])){echo "event/".$GLOBALS['events'][0]->id_event ;}?> method='post'>
                         <input type='hidden' name='register' value='1'/>
-                        <input type='submit' value='Sinscrire maintenant' class='buttonStyle1 buttonEventPos'/>
-                    </form>";
+                        <input type='submit' value="S'inscrire maintenant" class='buttonStyle1 buttonEventPos'/>
+                    </form>
                 </div>
                 <div>
                     <div class="textEvent center">

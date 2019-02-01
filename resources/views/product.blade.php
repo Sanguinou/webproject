@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Site du BDE - produit</title>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/item.css') }}"/>
+    <meta name="keywords" content="Site Web, BDE du CESI, Campus CESI, Arras, Projetweb"/>
 </head>
 
     @section('navbar')

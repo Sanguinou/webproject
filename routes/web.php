@@ -67,6 +67,23 @@ Route::post('event/SupprComment', function () {
     return view('SupprComment');
 });
 
+Route::get('event/SignalerComment', function () {
+    return view('SignalerComment');
+});
+
+Route::post('event/SignalerComment', function () {
+    return view('SignalerComment');
+});
+
+Route::get('event/SignalerImage', function () {
+    return view('SignalerImage');
+});
+
+Route::post('event/SignalerImage', function () {
+    return view('SignalerImage');
+});
+
+
 Route::get('event/{id}', function ($id) {
     return view('eventpics',$id_event = ["id_event"=>$id]);
 });
@@ -163,6 +180,14 @@ Route::get('Administration', function () {
 
 Route::post('Administration', function () {
     return view('admin');
+});
+
+Route::get('Administration/newproduct', function () {
+    return view('new_product');
+});
+
+Route::post('Administration/newproduct', function () {
+    return view('new_product');
 });
 
 Route::get('Buy', function () {
