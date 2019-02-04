@@ -106,7 +106,7 @@ $url_event = "http://localhost:3000/api/events";
                                             foreach($pic_products as $pic_products){
                                                 echo '
                                                 <div>
-                                                    <a href="http://127.0.0.1/product/'.$GLOBALS['products'][$i]->id_product.'">
+                                                    <a href="http://127.0.0.1:8000/product/'.$GLOBALS['products'][$i]->id_product.'">
                                                         <img class="imgBorder imgPos center" src="http://127.0.0.1:8000/image/'.$pic_products->picture_product_name.'" width="300" height="500">
                                                     </a>
                                                     <div class="nameProduct" width="300" height="100">
