@@ -45,12 +45,27 @@ session_start();
                                     if(isset($pic_products)){
                                             echo '
                                             <div>
-                                                <a href="http://127.0.0.1/product/'.$top_products[$i]->id_product.'">
+                                                <a href="http://127.0.0.1:8000/product/'.$top_products[$i]->id_product.'">
                                                     <img class="imgBorder imgPos center" src="http://127.0.0.1:8000/image/'.$pic_products[0]->picture_product_name.'" width="300" height="500">
                                                 </a>
                                                 <div class="nameProduct" width="300" height="100">
                                                     '.$top_products[$i]->product_name." ".'<b>'.$top_products[$i]->product_price.' €</b>
                                                 </div>
+                                                <form class="products" id="addt'.$top_products[$i]->id_product.'" action=http://127.0.0.1:8000/panier/  method="post">
+                                                    <input type="hidden" name="action" value="ajout">
+                                                    <input type="hidden" name="id_product" value="'.$top_products[$i]->id_product.'"/>
+                                                    <input type="hidden" name="product_price" value="'.$top_products[$i]->product_price.'">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <input class="buttonStyle1 buttonEventPos" type="submit" value="+">
+                                                </form>
+                
+                                                <form class="products" id="delt'.$top_products[$i]->id_product.'" action=http://127.0.0.1:8000/panier/  method="post">
+                                                    <input type="hidden" name="action" value="suppression">
+                                                    <input type="hidden" name="id_product" value="'.$top_products[$i]->id_product.'">
+                                                    <input type="hidden" name="product_price" value="'.$top_products[$i]->product_price.'">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <input class="buttonStyle1 buttonEventPos" type="submit" value="-">
+                                                </form>
                                             </div>';
                                     }
                                 }
@@ -155,6 +170,21 @@ session_start();
                                                 <div class="nameProduct" width="300" height="100">
                                                     '.$products->product_name." ".'<b>'.$products->product_price.' €</b>
                                                 </div>
+                                                <form class="products" id="add'.$products->id_product.'" action=http://127.0.0.1:8000/panier/  method="post">
+                                                    <input type="hidden" name="action" value="ajout">
+                                                    <input type="hidden" name="id_product" value="'.$products->id_product.'"/>
+                                                    <input type="hidden" name="product_price" value="'.$products->product_price.'">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <input class="buttonStyle1 buttonEventPos" type="submit" value="+">
+                                                </form>
+                
+                                                <form class="products" id="del'.$products->id_product.'" action=http://127.0.0.1:8000/panier/  method="post">
+                                                    <input type="hidden" name="action" value="suppression">
+                                                    <input type="hidden" name="id_product" value="'.$products->id_product.'">
+                                                    <input type="hidden" name="product_price" value="'.$products->product_price.'">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <input class="buttonStyle1 buttonEventPos" type="submit" value="-">
+                                                </form>
                                             </div>';
                                     };
                                 };
@@ -167,41 +197,40 @@ session_start();
     ?>
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
-            $("#apparels_action").click(function(){
-                $("#apparels").show();
-                $("#accessories").hide();
-            });
+<script>
+    $(document).ready(function(){
+        $("#apparels_action").click(function(){
+            $("#apparels").show();
+            $("#accessories").hide();
         });
-        $(document).ready(function(){
-            $("#accessories_action").click(function(){
-                $("#apparels").hide();
-                $("#accessories").show();
-            });
+    });
+    $(document).ready(function(){
+        $("#accessories_action").click(function(){
+            $("#apparels").hide();
+            $("#accessories").show();
         });
-        $(document).ready(function(){
-            $("#ShowAll").click(function(){
-                $("#apparels").show();    
-                $("#accessories").show();
-            });
+    });
+    $(document).ready(function(){
+        $("#ShowAll").click(function(){
+            $("#apparels").show();    
+            $("#accessories").show();
         });
-        $(document).ready(function(){
-            $( ".products" ).submit(function(event) {
-                var frm = $('#'+event.currentTarget.id);
-                $.ajax({
-                    type: frm.attr('method'),
-                    url: frm.attr('action'),
-                    data: frm.serialize(),
-                    dataType : 'html',
-                    success: function (data) {
-                        alert('ok'+frm.attr('method'));
-                    }
-                });
-            event.preventDefault();
+    });
+    $(document).ready(function(){
+        $( ".products" ).submit(function(event) {
+            var frm = $('#'+event.currentTarget.id);
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                dataType : 'html',
+                success: function (data) {
+                }
             });
+        event.preventDefault();
         });
-    </script>
+    });
+</script>
     @endsection
 </body>
 

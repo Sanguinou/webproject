@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Site du BDE - produit</title>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/item.css') }}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="keywords" content="Site Web, BDE du CESI, Campus CESI, Arras, Projetweb"/>
 </head>
 
@@ -51,7 +52,14 @@
                                                 <p>'.$products[0]->product_desc.'</p>
                                             </div> 
                                         </div>
-                                            <input id="add_item" type="submit" name="buy" value="Add to cart">  '; 
+                                        <form class="products" id="addt'.$products[0]->id_product.'" action=http://127.0.0.1:8000/panier/  method="post">
+                                            <input type="hidden" name="action" value="ajout">
+                                            <input type="hidden" name="id_product" value="'.$products[0]->id_product.'"/>
+                                            <input type="hidden" name="product_price" value="'.$products[0]->product_price.'">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input id="add_item" type="submit" name="buy" value="Add to cart">                                         
+                                        </form>
+                                             '; 
                                     };
                                 };
                             };
@@ -60,7 +68,22 @@
                 };  
 
     ?>
-
+<script>
+    $(document).ready(function(){
+        $( ".products" ).submit(function(event) {
+            var frm = $('#'+event.currentTarget.id);
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                dataType : 'html',
+                success: function (data) {
+                }
+            });
+        event.preventDefault();
+        });
+    });
+</script>
     @endsection
 </body>
 

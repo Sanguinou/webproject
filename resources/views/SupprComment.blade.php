@@ -17,7 +17,7 @@
         header("Location:http://127.0.0.1:8000/event/".$_POST['id_event']);
         exit();
     } else{
-        header("Location:http://127.0.0.1:8000/event/");
+        header("Location: {$_SERVER['HTTP_REFERER']}");
         exit();
     }
 ?>

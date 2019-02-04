@@ -6,6 +6,9 @@ if(isset($_SESSION['decoded'])){
         header("Location:http://127.0.0.1:8000/");
         exit();
     }
+}else if(!isset($_SESSION['decoded'])){
+    header("Location:http://127.0.0.1:8000/");
+    exit();
 }
 
 ?>
@@ -59,7 +62,7 @@ if(isset($_SESSION['decoded'])){
             <table class="center">
                 
             </table>
-            <p><a href="">Afficher tous les signalements</a></p>
+            <p><a href="Administration/report">Afficher tous les signalements</a></p>
         </div>
     </div>
     <div class="pos">
@@ -103,7 +106,7 @@ if(isset($_SESSION['decoded'])){
             ?>            
         </table>
         </div> 
-        <button class="buttonStyle3 prodbtnpos">Ajouter / modifier produit</button>   
+        <button onclick="window.location.href='http://127.0.0.1:8000/Administration/newproduct';" class="buttonStyle3 prodbtnpos">Ajouter / modifier produit</button>   
     </div>
 @endsection
 </body>

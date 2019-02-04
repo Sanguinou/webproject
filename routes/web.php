@@ -190,6 +190,15 @@ Route::post('Administration/newproduct', function () {
     return view('new_product');
 });
 
+Route::get('Administration/report', function () {
+    return view('notiflist');
+});
+
+Route::post('Administration/report', function () {
+    return view('notiflist');
+});
+
+
 Route::get('Buy', function () {
     return view('createOrder');
 });
@@ -208,4 +217,20 @@ Route::post('createEvent', function () {
 
 Route::get('legalnotice', function () {
     return view('legalnotice');
+});
+
+Route::post('PDF', function () {
+    return view('PDF');
+});
+
+Route::get('PDF', function () {
+    return view('PDF');
+});
+
+Route::post('CSV', function () {
+    return view('CSV');
+});
+
+Route::get('CSV', function () {
+    return view('CSV');
 });

@@ -11,6 +11,15 @@ if (isset($url_event)){
         $GLOBALS['event'] = json_decode($body);
     };
 };
+$url_reg="http://localhost:3000/api/registers/";
+if (isset($url_reg)){
+    $myClient = new GuzzleHttp\Client(['headers'=> ['User-Agent' => 'MyReader']]);
+    $resp = $myClient -> request('GET',$url_reg,['form_params'=> ['id_event'=> $id_event]], ['verify'=>false]);
+    if ($resp -> getStatusCode() == 200){
+        $body = $resp -> getBody();
+        $_SESSION['RegUsers'] = json_decode($body);
+    };
+};
 
 if(isset($_SESSION['decoded'])){
     $url_reg="http://localhost:3000/api/registers/";
@@ -58,8 +67,22 @@ if(isset($_SESSION['decoded'])){
     @endsection
 <body>
 @section('content')
-=    <!-- main event presentation -->
+    <!-- main event presentation -->
     <h1 class="titleEventPic Center"><?php if(isset($GLOBALS['event']) && sizeof($GLOBALS['event'])>0){echo $GLOBALS['event'][0]->event_name ;}?></h1>
+    <?php if(isset($_SESSION['decoded'])){
+        if($_SESSION['decoded']->id_status_user>1){
+        echo'
+        <form action="http://127.0.0.1:8000/PDF" method="post">
+            <button type="submit">DOWNLOAD PDF</button>
+        </form>
+        <form action="http://127.0.0.1:8000/CSV" method="post">
+            <button type="submit">DOWNLOAD CSV</button>
+        </form>';
+        }
+
+    }
+    ?>
+  
     <div>
         <img class="picEvent imgPos center" style="background-image: url('http://localhost:8000/image/<?php if(isset($GLOBALS['event']) && sizeof($GLOBALS['event'])>0){ echo $GLOBALS['event'][0]->picture_presentation_event;}?>')" width="1000" height="600">
         <div class="eventDescPic center">
@@ -111,7 +134,7 @@ if(isset($_SESSION['decoded'])){
                     if(isset($_POST['download'])){
                         foreach($GLOBALS['pictures_event'] as $pic){
                             $image = file_get_contents('http://127.0.0.1:8000/image/'.$pic['picture_event_name']);
-                            file_put_contents('C:/'.$pic['picture_event_name'], $image); //Where to save the image on your server
+                            file_put_contents('./DL/'.$pic["picture_event_name"], $image); //Where to save the image on your server
                         }
                     }
                 }
@@ -172,7 +195,7 @@ if(isset($_SESSION['decoded'])){
                                         <input type="hidden" name="id_user" value="'.$pic['id_user'].'"/>
                                         <input type="hidden" name="id_event" value="'.$id_event.'"/>
                                         <input type="hidden" name="id_picture_event" value="'.$pic['id_picture_event'].'"/>
-                                        <input class="buttonStyle3 likePos Center" style="width: 100px" type="submit" value="SUPPR"/>
+                                        <input class="buttonStyle3 likePos Center" style="width: 100px" type="submit" value="SUPPRIMER"/>
                                     </form>';
                                 }
                             }
@@ -271,7 +294,7 @@ if(isset($_SESSION['decoded'])){
                                         <form id="form" action="http://127.0.0.1:8000/event/SupprComment/" method="post">
                                             <input type="hidden" name="id_event" value="'.$id_event.'"/>                                            
                                             <input type="hidden" name="id_comment" value="'.$comments['id_comment'].'"/>
-                                            <input class="buttonStyle3 likePos Center" style="width: 100px" type="submit" value="SUPPR"/>
+                                            <input class="buttonStyle3 likePos Center" style="width: 100px" type="submit" value="SUPPRIMER"/>
                                         </form>';
                                     }
                                 }
